@@ -25,7 +25,6 @@ public class Inventory : MonoBehaviour
         }
 
         itemDatabase = GameObject.FindGameObjectWithTag("ItemDatabase").GetComponent<ItemDatabase>();
-        AddItem(1);
 	}
 	
 	// Update is called once per frame
@@ -74,6 +73,11 @@ public class Inventory : MonoBehaviour
                         {
                             RemoveItem(slots[i].itemID);
                         }
+
+                        if (Event.current.isMouse && Event.current.type == EventType.mouseDown && Event.current.button == 0)
+                        {
+                            Debug.Log("clicked " + i);
+                        }
                     }
                 }
                 // fix null texture passed to GUI.DrawTexture
@@ -83,6 +87,7 @@ public class Inventory : MonoBehaviour
                 //}
                 if (tooltip == null || tooltip == "")
                     showTooltip = false;
+
                 i++;
             }
         }
@@ -93,7 +98,7 @@ public class Inventory : MonoBehaviour
         // do not add more than one same type of item, cannot remove them separately
         for(int i = 0; i < inventory.Count; i++)
         {
-            // use itemname
+            // use itemname, value of id isnt null
             if(inventory[i].itemName == null)
             {
                 for (int j = 0; j < itemDatabase.items.Count; j++)
