@@ -6,12 +6,13 @@ public class Inventory : MonoBehaviour
 {
     public int slotsX, slotsY;
     public GUISkin skin;
-    public List<Item> inventory = new List<Item>();
     public List<Item> slots = new List<Item>();
+    public List<Item> inventory = new List<Item>();
     private ItemDatabase itemDatabase;
     public bool showInventory;
     private bool showTooltip;
     private string tooltip;
+    private bool inventoryFull;
 
 	// Use this for initialization
 	void Start ()
@@ -21,10 +22,12 @@ public class Inventory : MonoBehaviour
         {
             slots.Add(new Item());
             inventory.Add(new Item());
-
         }
 
         itemDatabase = GameObject.FindGameObjectWithTag("ItemDatabase").GetComponent<ItemDatabase>();
+
+        AddItem(1);
+        AddItem(2);
 	}
 	
 	// Update is called once per frame
@@ -47,6 +50,10 @@ public class Inventory : MonoBehaviour
         if(showTooltip)
         {
             GUI.Box(new Rect(Event.current.mousePosition.x + 15, Event.current.mousePosition.y, 100, 100), tooltip, skin.GetStyle("Tooltip"));
+        }
+        if(inventoryFull && showTooltip)
+        {
+            GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 100), "Inventory full", skin.GetStyle("Tooltip"));
         }
     }
 
@@ -74,9 +81,12 @@ public class Inventory : MonoBehaviour
                             RemoveItem(slots[i].itemID);
                         }
 
-                        if (Event.current.isMouse && Event.current.type == EventType.mouseDown && Event.current.button == 0)
+                        if (Event.current.isMouse && Event.current.type == EventType.mouseDown && Event.current.button == 1)
                         {
-                            Debug.Log("clicked " + i);
+                            if(slots[i].itemType == Item.ItemTypes.CONSUMABLE)
+                            {
+                                Debug.Log("consumable");
+                            }
                         }
                     }
                 }
@@ -85,7 +95,8 @@ public class Inventory : MonoBehaviour
                 //{
                 //    GUI.DrawTexture(slotRect, new Texture2D);
                 //}
-                if (tooltip == null || tooltip == "")
+                // "fixes" a bug where tooltip is showing while it should not
+                if (tooltip == null || tooltip == "" || tooltip == "<color=#610144>" + "" + "</color>\n\n" + "")
                     showTooltip = false;
 
                 i++;
@@ -99,17 +110,23 @@ public class Inventory : MonoBehaviour
         for(int i = 0; i < inventory.Count; i++)
         {
             // use itemname, value of id isnt null
-            if(inventory[i].itemName == null)
+            if (inventory[i].itemName == null)
             {
                 for (int j = 0; j < itemDatabase.items.Count; j++)
                 {
-                    if(itemDatabase.items[j].itemID == id)
+                    if (itemDatabase.items[j].itemID == id)
                     {
                         inventory[i] = itemDatabase.items[j];
                     }
                 }
                 break;
             }
+            // create a rule when inventory is full player will notice that
+            //else
+            //{
+            //    inventoryFull = true;
+            //}
+
         }
     }
 
@@ -144,7 +161,8 @@ public class Inventory : MonoBehaviour
 
     string CreateTooltip(Item item)
     {
-        tooltip = item.itemDescription;
+        tooltip = "";
+        tooltip += "<color=#610144>" + item.itemName + "</color>\n\n" + item.itemDescription;
 
         return tooltip;
     }

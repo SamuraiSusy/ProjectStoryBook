@@ -19,6 +19,7 @@ public class CollectItem : MonoBehaviour
 	void Update ()
     {
         Collect();
+        Debug.Log(foundItem);
 	}
 
     void Collect()
@@ -38,6 +39,7 @@ public class CollectItem : MonoBehaviour
 
                 //Destroy(GameObject.FindWithTag("P3"));
                 //addToInventory.AddItem(data.items[4].itemID);
+                foundItem = false;
             }
         }
     }
