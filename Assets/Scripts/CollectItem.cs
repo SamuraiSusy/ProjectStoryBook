@@ -19,7 +19,6 @@ public class CollectItem : MonoBehaviour
 	void Update ()
     {
         Collect();
-        Debug.Log(foundItem);
 	}
 
     void Collect()

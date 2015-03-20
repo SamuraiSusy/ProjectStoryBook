@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 
+// dont try to do inventory with arrays
+// if you want to navigate it with keyboard
+// adding and deleting from it is a pain
 public class Inventory : MonoBehaviour
 {
     public int slotsX, slotsY;
@@ -13,48 +16,93 @@ public class Inventory : MonoBehaviour
     private bool showTooltip;
     private string tooltip;
     private bool inventoryFull;
+    private int selected;
+    private int[] slotIndexes;
 
-	// Use this for initialization
-	void Start ()
+    // Use this for initialization
+    void Start()
     {
+        selected = 0;
+
         // add empty items to inventory slots
-        for(int i = 0; i < (slotsX * slotsY); i++)
+        for (int i = 0; i < (slotsX * slotsY); i++)
         {
             slots.Add(new Item());
             inventory.Add(new Item());
+        }
+
+        slotIndexes = new int[slotsX * slotsY];
+        for (int i = 0; i < (slotsX * slotsY); i++)
+        {
+            slotIndexes[i] = i;
         }
 
         itemDatabase = GameObject.FindGameObjectWithTag("ItemDatabase").GetComponent<ItemDatabase>();
 
         AddItem(1);
         AddItem(2);
-	}
-	
-	// Update is called once per frame
-	void Update ()
+        AddItem(0);
+    }
+
+    // Update is called once per frame
+    void Update()
     {
-        if(Input.GetKeyDown(KeyCode.I))
+        if (Input.GetKeyDown(KeyCode.I))
         {
             showInventory = !showInventory;
         }
-	}
+
+        if(Input.GetKeyDown(KeyCode.UpArrow))
+            selected = SlotSelectionVertical(slots, selected, "up");
+        if (Input.GetKeyDown(KeyCode.DownArrow))
+            selected = SlotSelectionVertical(slots, selected, "down");
+    }
 
     void OnGUI()
     {
         tooltip = "";
         GUI.skin = skin;
         if (showInventory)
-        {
             DrawInventory();
-        }
-        if(showTooltip)
+
+        if (showTooltip)
         {
-            GUI.Box(new Rect(Event.current.mousePosition.x + 15, Event.current.mousePosition.y, 100, 100), tooltip, skin.GetStyle("Tooltip"));
+            GUI.Box(new Rect(Screen.width / 2 + 210, Screen.height / 2 + 60, 100, 100), tooltip, skin.GetStyle("Tooltip"));
         }
-        if(inventoryFull && showTooltip)
-        {
+
+        if (inventoryFull && showTooltip)
             GUI.Box(new Rect(Screen.width / 2, Screen.height / 2, 100, 100), "Inventory full", skin.GetStyle("Tooltip"));
+    }
+
+    //private int SlotSelectionHorizontal(List<Item> slotList, int selectedItem, string direction)
+    //{
+    //    if(direction == "
+    //    return selectedItem;
+    //}
+
+    private int SlotSelectionVertical(List<Item> slotList, int selectedItem, string direction)
+    {
+        if (direction == "up")
+        {
+            if (selectedItem == 0)
+            {
+                selectedItem = slotList.Count - 1;
+            }
+            else
+                selectedItem -= 1;
         }
+
+        if (direction == "down")
+        {
+            if (selectedItem == slotList.Count - 1)
+            {
+                selectedItem = 0;
+            }
+            else
+                selectedItem += 1;
+        }
+
+        return selectedItem;
     }
 
     void DrawInventory()
@@ -64,31 +112,46 @@ public class Inventory : MonoBehaviour
         {
             for (int x = 0; x < slotsX; x++)
             {
+                bool[] buttons = new bool[slotsX * slotsY];
                 // in Unity make guiskin to use custom gui elements
                 Rect slotRect = new Rect(Screen.width / 2 + x * 60, Screen.height / 2 + y * 60, 50, 50);
-                GUI.Box(slotRect,"", skin.GetStyle("Slot"));
+
+                GUI.SetNextControlName(slotIndexes[i].ToString());
+
+                buttons[i] = GUI.Button(slotRect, "", skin.GetStyle("Slot"));
                 slots[i] = inventory[i];
 
-                if(slots[i].itemID != null)
+                if (slots[i].itemID != null)
                 {
                     GUI.DrawTexture(slotRect, slots[i].itemIcon);
-                    if(slotRect.Contains(Event.current.mousePosition))
+
+                    if(GUI.GetNameOfFocusedControl() == i.ToString())
                     {
                         tooltip = CreateTooltip(slots[i]);
                         showTooltip = true;
-                        if(Input.GetKeyDown(KeyCode.Mouse0))
-                        {
-                            RemoveItem(slots[i].itemID);
-                        }
-
-                        if (Event.current.isMouse && Event.current.type == EventType.mouseDown && Event.current.button == 1)
-                        {
-                            if(slots[i].itemType == Item.ItemTypes.CONSUMABLE)
-                            {
-                                Debug.Log("consumable");
-                            }
-                        }
                     }
+
+                    if(buttons[i])
+                    {
+                        // ei toimi, poistaa edellisen itemin
+                        //RemoveItem(slotIndexes[i]);
+                    }
+
+                    //if (slotRect.Contains(Event.current.mousePosition))
+                    //{
+                    //    tooltip = CreateTooltip(slots[i]);
+                    //    showTooltip = true;
+
+                    //    if (Event.current.isMouse && Event.current.type == EventType.mouseDown && Event.current.button == 1)
+                    //    {
+                    //        if (slots[i].itemType == Item.ItemTypes.CONSUMABLE)
+                    //        {
+                    //            Debug.Log("consumable");
+                    //        }
+                    //    }
+                    //}
+
+                    GUI.FocusControl(slotIndexes[selected].ToString());
                 }
                 // fix null texture passed to GUI.DrawTexture
                 //else
@@ -107,7 +170,7 @@ public class Inventory : MonoBehaviour
     public void AddItem(int id)
     {
         // do not add more than one same type of item, cannot remove them separately
-        for(int i = 0; i < inventory.Count; i++)
+        for (int i = 0; i < inventory.Count; i++)
         {
             // use itemname, value of id isnt null
             if (inventory[i].itemName == null)
@@ -151,7 +214,7 @@ public class Inventory : MonoBehaviour
         for (int i = 0; i < inventory.Count; i++)
         {
             result = inventory[i].itemID == id;
-            if(result)
+            if (result)
             {
                 break;
             }

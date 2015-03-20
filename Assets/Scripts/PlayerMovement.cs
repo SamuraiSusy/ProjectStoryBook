@@ -5,16 +5,20 @@ public class PlayerMovement : MonoBehaviour
 {
     public float speed;
     public GameObject InvGO;
-    Inventory inv;
+    private Inventory inv;
+    public bool lvl1, lvl2;
+
 	// Use this for initialization
-	void Start ()
+	private void Start ()
     {
         speed = 5f;
         inv = InvGO.GetComponent<Inventory>();
+        lvl1 = true;
+        lvl2 = false;
 	}
 	//22
 	// Update is called once per frame
-	void Update ()
+	private void Update ()
     {
         if(transform.position.x > 32)
         {
@@ -28,12 +32,12 @@ public class PlayerMovement : MonoBehaviour
             speed = 5;
 	}
 
-    void FixedUpdate()
+    private void FixedUpdate()
     {
         Move();
     }
 
-    void Move()
+    private void Move()
     {
         float walk = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
@@ -48,13 +52,17 @@ public class PlayerMovement : MonoBehaviour
 
         float stopCameraStart = -4.4f;
         float stopCameraEnd = 22f;
-        if(transform.position.x < stopCameraStart)
+        if(lvl1)
         {
-            Camera.main.transform.position = new Vector3(0f, 0, -10);
+            if (transform.position.x < stopCameraStart)
+            {
+                Camera.main.transform.position = new Vector3(0f, 0, -10);
+            }
+            if (transform.position.x > stopCameraEnd)
+            {
+                Camera.main.transform.position = new Vector3(26.5f, 0, -10);
+            }
         }
-        if (transform.position.x > stopCameraEnd)
-        {
-            Camera.main.transform.position = new Vector3(26.5f, 0, -10);
-        }
+
     }
 }
