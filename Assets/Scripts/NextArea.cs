@@ -11,6 +11,7 @@ public class NextArea : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("mo");
         player = GameObject.FindGameObjectWithTag("Player");
         plMov = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 

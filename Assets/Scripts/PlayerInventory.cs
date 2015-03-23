@@ -16,6 +16,7 @@ public class PlayerInventory : MonoBehaviour
 	// Use this for initialization
 	private void Start ()
     {
+        Debug.Log(tempICON[0].itemName);
         database = GameObject.FindGameObjectWithTag("ItemDatabase").GetComponent<ItemDatabase>();
         showInventory = false;
         showTooltip = false;
@@ -29,7 +30,7 @@ public class PlayerInventory : MonoBehaviour
         }
 
         AddItem(0);
-        Debug.Log(tempICON[0].itemName);
+    
 	}
 	
 	// Update is called once per frame
