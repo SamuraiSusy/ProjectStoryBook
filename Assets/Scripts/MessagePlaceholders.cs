@@ -87,14 +87,16 @@ public class MessagePlaceholders : MonoBehaviour
         dialogue2Yes = new string[]
         {
             "vastasit sitte kylla",
-            "se o iha ok juttu"
+            "se o iha ok juttu",
+            ""
         };
 
         dialogue2No = new string[]
         {
             "jaa ei vai",
             "noh ok sitte...",
-            "en oo vihane tai mtn :("
+            "en oo vihane tai mtn :(",
+            ""
         };
     }
 }

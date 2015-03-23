@@ -89,7 +89,7 @@ public class ChoiseButtons : MonoBehaviour
             {
                 if (buttonID[0])
                 {
-                    box.currentMessage = messages.choises[i][box.count2 - 1];
+                    box.currentMessage = messages.choises[i - 1][box.count2];
                     showButtons = false;
                 }
                 if (buttonID[1])
@@ -107,7 +107,8 @@ public class ChoiseButtons : MonoBehaviour
                 }
                 if (buttonID[1])
                 {
-                    box.currentMessage = messages.choises[i][box.count2 + 1];
+                    box.currentMessage = messages.choises[i + 1][box.count2];
+                    showButtons = false;
                 }
             }
 
