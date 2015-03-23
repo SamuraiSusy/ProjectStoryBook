@@ -66,39 +66,6 @@ public class ChoiseButtons : MonoBehaviour
             //}
         }
     }
-
-    public void ChangeChoiseMessages()
-    {
-        for (int i = 0; i < messages.choises.Length; i++)
-        {
-            if (i == messages.choises.Length - 1)
-            {
-                if (selectedButton == 0)
-                {
-                    Debug.Log("yes it is button");
-                    box.curTextBoxContent = messages.choises[i - 1];
-                }
-                if (selectedButton == 1)
-                {
-                    Debug.Log("no button");
-                    box.curTextBoxContent = messages.choises[i];
-                }
-            }
-            else
-            {
-                if (selectedButton == 0)
-                {
-                    Debug.Log("yes it is button");
-                    box.curTextBoxContent = messages.choises[i];
-                }
-                if (selectedButton == 1)
-                {
-                    Debug.Log("no button");
-                    box.curTextBoxContent = messages.choises[i + 1];
-                }
-            }
-        }
-    }
 	
     private void OnGUI()
     {
@@ -118,15 +85,30 @@ public class ChoiseButtons : MonoBehaviour
             GUI.SetNextControlName(buttonsArray[i]);
             buttonID[i] = GUI.Button(new Rect(butL, butT + offset, butW, butH), buttonsArray[i], skin.GetStyle("Button"));
 
-            if (buttonID[0])
+            if (i == messages.choises.Length - 1)
             {
-                //Debug.Log("yes");
-                box.showBox = true;
+                if (buttonID[0])
+                {
+                    box.currentMessage = messages.choises[i][box.count2 - 1];
+                    showButtons = false;
+                }
+                if (buttonID[1])
+                {
+                    box.currentMessage = messages.choises[i][box.count2];
+                    showButtons = false;
+                }
             }
-            if(buttonID[1])
+            else
             {
-                //Debug.Log("no");
-                box.showBox = true;
+                if (buttonID[0])
+                {
+                    box.currentMessage = messages.choises[i][box.count2];
+                    showButtons = false;
+                }
+                if (buttonID[1])
+                {
+                    box.currentMessage = messages.choises[i][box.count2 + 1];
+                }
             }
 
             offset += butH;

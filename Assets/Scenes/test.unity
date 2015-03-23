@@ -1593,6 +1593,7 @@ MonoBehaviour:
   showMessages: 0
   currentMessage: 
   count: 0
+  count2: 0
   curTextBoxContent: []
 --- !u!4 &1313735846
 Transform:
