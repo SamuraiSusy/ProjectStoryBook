@@ -49,66 +49,48 @@ public class ChoiseButtons : MonoBehaviour
     {
         GUI.skin = skin;
         float offset = 0f;
+        bool[] buttonID = new bool[buttonsArray.Length]; // so every button can be reached
 
-        //for(int i = 0; i < buttonsArray.Length; i++)
-        //{
-        //    GUI.SetNextControlName(buttonsArray[i]);
-        //    buttonID[i] = GUI.Button(new Rect(butL, butT + offset, butW, butH), buttonsArray[i], skin.GetStyle("Button"));
-
-        //    if (i == messages.choises.Length - 1)
-        //    {
-        //        if (buttonID[0])
-        //        {
-        //            box.currentMessage = messages.choises[i - 1][box.count2];
-        //            showButtons = false;
-        //            Debug.Log("juu1");
-        //        }
-        //        if (buttonID[1])
-        //        {
-        //            box.currentMessage = messages.choises[i][box.count2];
-        //            showButtons = false;
-        //            Debug.Log("ei1");
-        //        }
-        //    }
-        //    else
-        //    {
-        //        if (buttonID[0])
-        //        {
-        //            box.currentMessage = messages.choises[i][box.count2];
-        //            showButtons = false;
-        //            Debug.Log("juu2");
-        //        }
-        //        if (buttonID[1])
-        //        {
-        //            box.currentMessage = messages.choises[i + 1][box.count2];
-        //            showButtons = false;
-        //            Debug.Log("ei2");
-        //        }
-        //    }
-
-        //    offset += butH;
-        //}
-        //GUI.FocusControl(buttonsArray[selectedButton]);
-
-        GUI.SetNextControlName(buttonsArray[0]);
-
-        if (GUI.Button(new Rect(butL, butT + offset, butW, butH), buttonsArray[0], skin.GetStyle("Button")))
+        for (int i = 0; i < buttonsArray.Length; i++)
         {
-            box.currentMessage = messages.choises[0][box.count2];
-            Debug.Log("juu");
-            showButtons = false;
+            GUI.SetNextControlName(buttonsArray[i]);
+            buttonID[i] = GUI.Button(new Rect(butL, butT + offset, butW, butH), buttonsArray[i], skin.GetStyle("Button"));
+
+            if (i == messages.choises.Length - 1)
+            {
+                if (buttonID[0])
+                {
+                    box.currentMessage = messages.choises[i -1][box.count2];
+                    Debug.Log("juu1");
+                    showButtons = false;
+                }
+                if (buttonID[1])
+                {
+                    box.currentMessage = messages.choises[i][box.count2 + 1];
+                    Debug.Log("ei1");
+                    showButtons = false;
+                }
+            }
+            else
+            {
+                if (buttonID[0])
+                {
+                    Debug.Log(i);
+                    box.currentMessage = messages.choises[i][box.count2];
+                    Debug.Log("juu2");
+                    showButtons = false;
+                }
+                if (buttonID[1])
+                {
+                    Debug.Log(i);
+                    box.currentMessage = messages.choises[i + 1][box.count2 + 1];
+                    Debug.Log("ei2");
+                    showButtons = false;
+                }
+            }
+
+            offset += butH;
         }
-
-        GUI.SetNextControlName(buttonsArray[1]);
-        offset += butH;
-
-        if (GUI.Button(new Rect(butL, butT + offset, butW, butH), buttonsArray[1], skin.GetStyle("Button")))
-        {
-            box.currentMessage = messages.choises[1][box.count2 + 1];
-            Debug.Log("ei");
-            showButtons = false;
-        }
-
         GUI.FocusControl(buttonsArray[selectedButton]);
     }
 

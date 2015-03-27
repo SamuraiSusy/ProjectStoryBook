@@ -31,16 +31,13 @@ public class MessageBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("box1" + showBox1);
-        Debug.Log("box2" + showBox2);
-        if (showBox1 && Input.GetButtonDown("Collect"))
+        if (showBox1 && Input.GetButtonUp("Collect"))
         {
             WriteMessages();
         }
-        else if (showBox2 && Input.GetButtonDown("Collect"))
+        else if (showBox2 && Input.GetButtonUp("Collect"))
         {
             WriteMessages2();
-            Debug.Log(currentMessage);
         }
     }
 
@@ -77,13 +74,11 @@ public class MessageBox : MonoBehaviour
                             showBox1 = false;
                             curTextBoxContent = messages.choises[i];
                             answer.showButtons = true;
-                            //showBox2 = true;
                         }
                     }
 
                     else if (curTextBoxContent.GetHashCode() == messages.dialogues[i].GetHashCode() && count >= messages.dialogues[i].Length)
                     {
-                        Debug.Log("4");
                         showBox1 = false;
                         showMessages = false;
                         changeContent.triggers[i] = false;
@@ -95,23 +90,20 @@ public class MessageBox : MonoBehaviour
         }
     }
 
+    // when there is a question
     private void WriteMessages2()
     {
         for (int i = 0; i < messages.choises.Length; i++)
         {
             if (curTextBoxContent.GetHashCode() == messages.choises[i].GetHashCode())
             {
-                Debug.Log("1");
                 if (count2 < messages.choises[i].Length)
                 {
-                    Debug.Log(count2 + " count2");
-                    Debug.Log("2");
                     currentMessage = PrintMessages(messages.choises[i], count2);
                     count2++;
 
                     if (curTextBoxContent.GetHashCode() == messages.choises[i].GetHashCode() && count2 >= messages.choises[i].Length)
                     {
-                        Debug.Log("3");
                         showBox1 = false;
                         showBox2 = false;
                         showMessages = false;
