@@ -54,12 +54,14 @@
      <Compile Include="Assets\Scripts\Inventory.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />
      <Compile Include="Assets\Scripts\ItemDatabase.cs" />
+     <Compile Include="Assets\Scripts\MS2.cs" />
      <Compile Include="Assets\Scripts\MessageBox.cs" />
      <Compile Include="Assets\Scripts\MessagePlaceholders.cs" />
      <Compile Include="Assets\Scripts\NextArea.cs" />
      <Compile Include="Assets\Scripts\PlayerInventory.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\TextBoxFirstLine.cs" />
+     <Compile Include="Assets\Scripts\testaus.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
