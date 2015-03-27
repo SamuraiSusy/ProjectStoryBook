@@ -514,6 +514,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 481163029}
   - 61: {fileID: 481163031}
+  - 114: {fileID: 481163030}
   m_Layer: 0
   m_Name: Dialogue1
   m_TagString: DiaTrig
@@ -534,6 +535,18 @@ Transform:
   - {fileID: 993811419}
   m_Father: {fileID: 0}
   m_RootOrder: 1
+--- !u!114 &481163030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 481163028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98488bfa640de6347a4eb2af34bd3c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstLine: A candle
 --- !u!61 &481163031
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1577,6 +1590,8 @@ MonoBehaviour:
   dialogue2: []
   dialogue2Yes: []
   dialogue2No: []
+  yesserino: []
+  noperino: []
 --- !u!114 &1313735845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1589,7 +1604,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skin: {fileID: 11400000, guid: 119f8af44ac3d9f4db03a381ea24d0ac, type: 2}
-  showBox: 0
+  showBox1: 0
+  showBox2: 0
   showMessages: 0
   currentMessage: 
   count: 0
@@ -2165,6 +2181,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1728417564}
   - 61: {fileID: 1728417563}
+  - 114: {fileID: 1728417565}
   m_Layer: 0
   m_Name: Dialogue2
   m_TagString: DiaTrig2
@@ -2198,6 +2215,18 @@ Transform:
   - {fileID: 836269806}
   m_Father: {fileID: 0}
   m_RootOrder: 2
+--- !u!114 &1728417565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1728417562}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98488bfa640de6347a4eb2af34bd3c4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firstLine: A key
 --- !u!1 &1753872686
 GameObject:
   m_ObjectHideFlags: 0

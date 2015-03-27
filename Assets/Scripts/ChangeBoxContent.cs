@@ -26,9 +26,16 @@ public class ChangeBoxContent : MonoBehaviour
         {
             if(triggers[i])
             {
-                ms.showBox = true;
+                ms.showBox1 = true;
                 ms.showMessages = true;
                 ms.curTextBoxContent = messages.dialogues[i];
+
+                if (ms.count == messages.dialogues[i].Length - 1 && messages.dialogues[i][messages.dialogues[i].Length - 1] == "$")
+                {
+                    ms.showBox1 = false;
+                    ms.showBox2 = true;
+                    ms.curTextBoxContent = messages.choises[i];
+                }
             }
         }
 	}

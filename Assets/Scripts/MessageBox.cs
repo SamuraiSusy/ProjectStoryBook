@@ -5,7 +5,7 @@ using System.Collections;
 public class MessageBox : MonoBehaviour
 {
     public GUISkin skin;
-    public bool showBox;
+    public bool showBox1, showBox2;
     private MessagePlaceholders messages;
     private ChangeBoxContent changeContent;
     private ChoiseButtons answer;
@@ -17,30 +17,36 @@ public class MessageBox : MonoBehaviour
     // Use this for initialization
     private void Start()
     {
-        showBox = false;
+        showBox1 = false;
+        showBox2 = false;
         messages = GetComponent<MessagePlaceholders>();
         changeContent = GameObject.FindGameObjectWithTag("Player").GetComponent<ChangeBoxContent>();
         answer = GetComponent<ChoiseButtons>();
         showMessages = false;
         currentMessage = "";
         count = 0;
+        count2 = 0;
     }
-
-    int currentMessageID = 0;
 
     // Update is called once per frame
     void Update()
     {
-
-        if (showBox && Input.GetButtonDown("Collect"))
+        Debug.Log("box1" + showBox1);
+        Debug.Log("box2" + showBox2);
+        if (showBox1 && Input.GetButtonDown("Collect"))
         {
             WriteMessages();
+        }
+        else if (showBox2 && Input.GetButtonDown("Collect"))
+        {
+            WriteMessages2();
+            Debug.Log(currentMessage);
         }
     }
 
     private void OnGUI()
     {
-        if (showBox)
+        if (showBox1 || showBox2)
         {
             DrawBox();
         }
@@ -58,129 +64,56 @@ public class MessageBox : MonoBehaviour
     {
         for (int i = 0; i < messages.dialogues.Length; i++)
         {
-            if (curTextBoxContent == messages.dialogues[i])
+            if (curTextBoxContent.GetHashCode() == messages.dialogues[i].GetHashCode())
             {
                 if (count < messages.dialogues[i].Length)
                 {
                     currentMessage = PrintMessages(messages.dialogues[i], count);
                     count++;
-                    Debug.Log("-1");
                     if (count == messages.dialogues[i].Length - 1)
                     {
-                        Debug.Log("0");
                         if (messages.dialogues[i][messages.dialogues[i].Length - 1] == "$")
                         {
-                            Debug.Log("1");
-                            count2 = 0;
-                            answer.showButtons = true;
+                            showBox1 = false;
                             curTextBoxContent = messages.choises[i];
+                            answer.showButtons = true;
+                            //showBox2 = true;
                         }
                     }
 
-                    else if (curTextBoxContent == messages.dialogues[i] && count >= messages.dialogues[i].Length)
+                    else if (curTextBoxContent.GetHashCode() == messages.dialogues[i].GetHashCode() && count >= messages.dialogues[i].Length)
                     {
-                        Debug.Log("2");
-                        showBox = false;
+                        Debug.Log("4");
+                        showBox1 = false;
                         showMessages = false;
                         changeContent.triggers[i] = false;
                         currentMessage = "";
                         count = 0;
-                        // Debug.Log("täälkö?");
-                        //    Debug.Log(count2);
-                    }
-
-                }
-            }
-
-            else if (curTextBoxContent == messages.choises[i])
-            {
-                Debug.Log("3");
-                showBox = true;
-                if (count2 < messages.choises[i].Length)
-                {
-                    Debug.Log("4");
-                    if (Input.GetButtonUp("Collect"))
-                    {
-                        Debug.Log("5");
-                        currentMessage = PrintMessages(messages.choises[i], count2);
-                        count2++;
-                    }
-
-                    if (curTextBoxContent == messages.choises[i] && count2 >= messages.choises[i].Length)
-                    {
-                        Debug.Log("6");
-                        showBox = false;
-                        showMessages = false;
-                        changeContent.triggers[i] = false;
-                        currentMessage = "";
-                        count = 0;
-                        count2 = 0;
                     }
                 }
             }
         }
     }
 
-    private void UpdateMessage()
+    private void WriteMessages2()
     {
-        for (int i = 0; i < messages.dialogues.Length; i++)
+        for (int i = 0; i < messages.choises.Length; i++)
         {
-            bool t = false;
-            if (curTextBoxContent == messages.dialogues[i])
+            if (curTextBoxContent.GetHashCode() == messages.choises[i].GetHashCode())
             {
-                if (count < messages.dialogues[i].Length)
-                {
-                    if (Input.GetButtonUp("Collect"))
-                    {
-                        currentMessage = PrintMessages(messages.dialogues[i], count);
-                        count++;
-                        Debug.Log("-1");
-                        if (count == messages.dialogues[i].Length - 1)
-                        {
-                            Debug.Log("0");
-                            if (messages.dialogues[i][messages.dialogues[i].Length - 1] == "$")
-                            {
-                                Debug.Log("1");
-                                count2 = 0;
-                                answer.showButtons = true;
-                                curTextBoxContent = messages.choises[i];
-                            }
-                        }
-
-                        else if (t == false && curTextBoxContent == messages.dialogues[i] && count >= messages.dialogues[i].Length)
-                        {
-                            Debug.Log("2");
-                            showBox = false;
-                            showMessages = false;
-                            changeContent.triggers[i] = false;
-                            currentMessage = "";
-                            count = 0;
-                            // Debug.Log("täälkö?");
-                            //    Debug.Log(count2);
-                        }
-                    }
-                }
-            }
-
-            else if (curTextBoxContent == messages.choises[i])
-            {
-                t = true;
-                Debug.Log("3");
-                showBox = true;
+                Debug.Log("1");
                 if (count2 < messages.choises[i].Length)
                 {
-                    Debug.Log("4");
-                    if (Input.GetButtonUp("Collect"))
-                    {
-                        Debug.Log("5");
-                        currentMessage = PrintMessages(messages.choises[i], count2);
-                        count2++;
-                    }
+                    Debug.Log(count2 + " count2");
+                    Debug.Log("2");
+                    currentMessage = PrintMessages(messages.choises[i], count2);
+                    count2++;
 
-                    if (curTextBoxContent == messages.choises[i] && count2 >= messages.choises[i].Length)
+                    if (curTextBoxContent.GetHashCode() == messages.choises[i].GetHashCode() && count2 >= messages.choises[i].Length)
                     {
-                        Debug.Log("6");
-                        showBox = false;
+                        Debug.Log("3");
+                        showBox1 = false;
+                        showBox2 = false;
                         showMessages = false;
                         changeContent.triggers[i] = false;
                         currentMessage = "";

@@ -28,13 +28,13 @@ public class ChangeMessages : MonoBehaviour
         // if player collides with right object text box starts to run
 	    if(collidedDialogueTrigger)
         {
-            ms.showBox = true;
+            ms.showBox1 = true;
             ms.showMessages = true;
             ms.curTextBoxContent = messages.dialogues[0];
         }
         if(collidedDialogue2Trigger)
         {
-            ms.showBox = true;
+            ms.showBox1 = true;
             ms.showMessages = true;
             //ms.curTextBoxContent = messages.dialoguesWithAnswers[0];
         }

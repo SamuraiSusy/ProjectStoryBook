@@ -7,8 +7,11 @@ public class MessagePlaceholders : MonoBehaviour
     public string[] dialogue;
     public string[] dialogue2;
 
+    // if you only have 2 choises, there is a bug
+    // where the player presses 4 buttons
     public string[][] choises;
     public string[] dialogue2Yes, dialogue2No;
+    public string[] yesserino, noperino;
 
     // remember to set up the arrays!
     private void Awake()
@@ -29,10 +32,12 @@ public class MessagePlaceholders : MonoBehaviour
 
     private void SetUpChoises()
     {
-        choises = new string[2][];
+        choises = new string[4][];
 
         choises[0] = dialogue2Yes;
         choises[1] = dialogue2No;
+        choises[2] = yesserino;
+        choises[3] = noperino;
     }
 
     private void SetDialogue()
@@ -43,20 +48,6 @@ public class MessagePlaceholders : MonoBehaviour
             "lol",
             "moi",
             "terve",
-            "heippa",
-            "moikka",
-            "xd",
-            "derp",
-            "herp",
-            "rofl",
-            "kappa",
-            "i",
-            "h",
-            "g",
-            "f",
-            "e",
-            "d",
-            "c",
             "b",
             "a",
             ""
@@ -74,13 +65,6 @@ public class MessagePlaceholders : MonoBehaviour
             "annie botilla on havioputki paalla.",
             "en oo seurannu niin tarkaa et tietaisin miks niin on.",
             "kyl taa placeholderie kirjottamine o nii kivvaa hommaa..",
-            "pitais tasa koht keksii joku loppukyssari et voi testat valikkoi,",
-            "mut oon tosi huono keksii nait.",
-            "mut kyl taa mun mielest demonstroi aika hyval taval.",
-            "mita mielta sina olet?",
-            "naa aakkoset o nii kivoi ilma aakkosii",
-            "lol",
-            "onko koodari menettanyt jarkensa?",
             "$"
         };
 
@@ -96,6 +80,20 @@ public class MessagePlaceholders : MonoBehaviour
             "jaa ei vai",
             "noh ok sitte...",
             "en oo vihane tai mtn :(",
+            ""
+        };
+
+        yesserino = new string[]
+        {
+            "lolo",
+            "jojo",
+            ""
+        };
+
+        noperino = new string[]
+        {
+            "loporo",
+            "nopero",
             ""
         };
     }

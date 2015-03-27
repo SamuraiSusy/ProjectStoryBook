@@ -4,17 +4,12 @@ using System.Collections;
 public class TextBoxFirstLine : MonoBehaviour
 {
     private MessageBox box;
+    public string firstLine;
 
 	// Use this for initialization
-	void Start ()
+	private void Start ()
     {
         box = GameObject.FindGameObjectWithTag("MessageBox").GetComponent<MessageBox>();
-
-	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-	
+        box.currentMessage = firstLine;
 	}
 }
