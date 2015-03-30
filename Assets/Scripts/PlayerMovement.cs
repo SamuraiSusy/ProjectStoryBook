@@ -12,7 +12,7 @@ public class PlayerMovement : MonoBehaviour
 	private void Start ()
     {
         speed = 5f;
-        inv = InvGO.GetComponent<Inventory>();
+        //inv = InvGO.GetComponent<Inventory>();
         lvl1 = true;
         lvl2 = false;
 	}
@@ -24,12 +24,12 @@ public class PlayerMovement : MonoBehaviour
         {
             Application.LoadLevel(0);
         }
-        if (inv.showInventory)
-        {
-            speed = 0;
-        }
-        else
-            speed = 5;
+        //if (inv.showInventory)
+        //{
+        //    speed = 0;
+        //}
+        //else
+            //speed = 5;
 	}
 
     private void FixedUpdate()

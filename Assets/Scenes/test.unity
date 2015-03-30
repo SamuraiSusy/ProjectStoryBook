@@ -1595,6 +1595,7 @@ GameObject:
   - 114: {fileID: 1313735844}
   - 114: {fileID: 1313735847}
   - 114: {fileID: 1313735848}
+  - 114: {fileID: 1313735849}
   m_Layer: 0
   m_Name: MessageBox
   m_TagString: MessageBox
@@ -1625,7 +1626,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1313735843}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9eb84bb34db992d43848a59d016e7c51, type: 3}
   m_Name: 
@@ -1680,6 +1681,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff4d2fcbfedff3f43869dba0c66a1216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1313735849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1313735843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b5bf95ca1326cd4f8e287d7c2388d68, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skin: {fileID: 11400000, guid: 119f8af44ac3d9f4db03a381ea24d0ac, type: 2}
+  showBox: 0
+  currentMessage: 
+  count: 0
+  count2: 0
+  curTextBoxContent: []
 --- !u!1 &1444864435
 GameObject:
   m_ObjectHideFlags: 0

@@ -65,7 +65,7 @@ public class MS2 : MonoBehaviour
                     {
                         if (messages.dialogues[i][messages.dialogues[i].Length - 1] == "$")
                         {
-                            showBox1 = false;
+                            showBox = false;
                             curTextBoxContent = messages.choises[i];
                             answer.showButtons = true;
                         }
@@ -73,8 +73,8 @@ public class MS2 : MonoBehaviour
 
                     else if (curTextBoxContent.GetHashCode() == messages.dialogues[i].GetHashCode() && count >= messages.dialogues[i].Length)
                     {
-                        showBox1 = false;
-                        showMessages = false;
+                        showBox = false;
+                        //showMessages = false;
                         changeContent.triggers[i] = false;
                         currentMessage = "";
                         count = 0;
