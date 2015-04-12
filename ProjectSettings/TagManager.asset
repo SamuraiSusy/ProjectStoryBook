@@ -18,6 +18,8 @@ TagManager:
   - trig2
   - trig3
   - trig4
+  - lvlstart
+  - Database
   layers:
   - Default
   - TransparentFX
