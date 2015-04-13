@@ -4,27 +4,19 @@ using System.Collections;
 [System.Serializable]
 public class Item
 {
-    public enum ItemTypes
+    public string name;
+    public string description;
+    public int id;
+    public Texture2D icon;
+
+    public Item() { }
+
+    public Item(string name, int id, string desc)
     {
-        PUZZLE,
-        CONSUMABLE,
-        INFORMATIVE
-    }
-
-    public string itemName;
-    public string itemDescription;
-    public int itemID;
-    public Texture2D itemIcon;
-    public ItemTypes itemType;
-
-    public Item(){}
-
-    public Item(string name, int id, string desc, ItemTypes type)
-    {
-        itemName = name;
-        itemDescription = desc;
-        itemID = id;
-        itemIcon = Resources.Load<Texture2D>("ItemIcons/" + name);
-        itemType = type;
+        this.name = name;
+        this.description = desc;
+        this.id = id;
+        icon = Resources.Load<Texture2D>("ItemIcons/" + name);
+        Debug.Log("item " + id);
     }
 }
