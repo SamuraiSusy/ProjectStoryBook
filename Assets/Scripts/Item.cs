@@ -17,6 +17,5 @@ public class Item
         this.description = desc;
         this.id = id;
         icon = Resources.Load<Texture2D>("ItemIcons/" + name);
-        Debug.Log("item " + id);
     }
 }
