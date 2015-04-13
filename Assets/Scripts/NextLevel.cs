@@ -9,6 +9,8 @@ public class NextLevel : MonoBehaviour
     public float point;
     public float cameraX, cameraY;
 
+    //public bool muttuja jonka avulla seuraava kenttä määritellään
+
     private string[] buttons = { "kylla", "ei" };
     private int selected;
     private bool showButtons, move;
