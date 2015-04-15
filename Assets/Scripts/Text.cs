@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Text : MonoBehaviour
 {
+    public GUISkin skin;
     // kiinnitä ykso jokaiseen objektiin!!!11!
     public string[] text; // jätä viimeinen kenttä(indeksi) tyhjäksi
     private bool show;
@@ -40,9 +41,10 @@ public class Text : MonoBehaviour
 
     private void OnGUI()
     {
+        GUI.skin = skin;
         Rect boxRect = new Rect(300, 300, 150, 100);
         if (show)
-            GUI.Box(boxRect, current);
+            GUI.Box(boxRect, current, "box");
     }
 
     private void OnTriggerEnter2D(Collider2D col)

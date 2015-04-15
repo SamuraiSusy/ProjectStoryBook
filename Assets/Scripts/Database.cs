@@ -16,5 +16,9 @@ public class Database : MonoBehaviour
         items.Add(new Item("Item5", 5, "item 5"));
         items.Add(new Item("Item6", 6, "item 6"));
         items.Add(new Item("Item7", 7, "item 7"));
+        items.Add(new Item("Item8", 8, "item 8"));
+        items.Add(new Item("Item9", 9, "item 9"));
+        items.Add(new Item("Item10", 10, "item 10"));
+        items.Add(new Item("Item11", 11, "item 11"));
 	}
 }

@@ -4,11 +4,14 @@ using System.Collections.Generic;
 
 public class Inventory : MonoBehaviour
 {
+    public GUISkin skin;
+
     public List<Item> inventory = new List<Item>();
 
     public int slotX, slotY;
 
     private Database database;
+    private PlayerControl player;
 
     private int[] slotIndex;
     private int selected;
@@ -19,6 +22,7 @@ public class Inventory : MonoBehaviour
 	private void Start ()
     {
         database = GameObject.FindGameObjectWithTag("Database").GetComponent<Database>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
 
         slotIndex = new int[slotX * slotY];
 
@@ -63,6 +67,8 @@ public class Inventory : MonoBehaviour
 
     private void Draw()
     {
+        GUI.skin = skin;
+
         int i = 0;
         for(int y = 0; y < slotY; y++)
         {
@@ -73,7 +79,7 @@ public class Inventory : MonoBehaviour
 
                 GUI.SetNextControlName(slotIndex[i].ToString());
 
-                buttons[i] = GUI.Button(slotRect, "");
+                buttons[i] = GUI.Button(slotRect, "", "box");
 
                 if(inventory[i].id != null)
                 {

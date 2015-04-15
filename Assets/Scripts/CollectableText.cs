@@ -3,7 +3,7 @@ using System.Collections;
 
 public class CollectableText : MonoBehaviour
 {
-
+    public GUISkin skin;
     // kiinnitä ykso jokaiseen objektiin!!!11!
     //public string first;
     public int itemID;
@@ -72,9 +72,10 @@ public class CollectableText : MonoBehaviour
 
     private void OnGUI()
     {
+        GUI.skin = skin;
         Rect boxRect = new Rect(300, 300, 150, 100);
         if (show || show2)
-            GUI.Box(boxRect, temp);
+            GUI.Box(boxRect, temp, "box");
 
         if (showButtons)
             CreateButtons();
@@ -83,7 +84,7 @@ public class CollectableText : MonoBehaviour
     private void CreateButtons()
     {
         GUI.SetNextControlName(buttons[0]);
-        if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0]))
+        if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0], "box"))
         {
             inventory.AddItem(itemID);
             count = 0;
@@ -94,7 +95,7 @@ public class CollectableText : MonoBehaviour
         }
 
         GUI.SetNextControlName(buttons[1]);
-        if (GUI.Button(new Rect(0, 100, 100, 100), buttons[1]))
+        if (GUI.Button(new Rect(0, 100, 100, 100), buttons[1], "box"))
         {
             count = 0;
             show2 = false;

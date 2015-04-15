@@ -3,6 +3,8 @@ using System.Collections;
 
 public class NextLevel : MonoBehaviour
 {
+    public GUISkin skin;
+
     public GameObject player;
     private PlayerControl playerControl;
 
@@ -32,8 +34,12 @@ public class NextLevel : MonoBehaviour
 
     private void OnGUI()
     {
+        GUI.skin = skin;
         if(showButtons)
+        {
+            GUI.Box(new Rect(100, 100, 100, 100), "Haluatko siirtyä seuraavalle tasolle?");
             CreateButtons();
+        }
     }
 
     private void CreateButtons()
