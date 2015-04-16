@@ -5,7 +5,7 @@ public class FadeOut : MonoBehaviour
 {
     public GUITexture texture;
 
-    public float fadeSpeed = 1.5f;
+    public float fadeSpeed = 1.5f; // change to private when the speed has been chosen
     private bool fadeOut, fadedOut;
 
     private void Awake()

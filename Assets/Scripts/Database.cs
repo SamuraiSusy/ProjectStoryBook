@@ -22,3 +22,4 @@ public class Database : MonoBehaviour
         items.Add(new Item("Item11", 11, "item 11"));
 	}
 }
+// pinni, saksi1, saksi2, sakset, vaateet??

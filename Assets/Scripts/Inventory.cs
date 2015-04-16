@@ -61,8 +61,13 @@ public class Inventory : MonoBehaviour
 
     private void OnGUI()
     {
-        if(show)
+        if (show)
+        {
+            player.enabled = false;
             Draw();
+        }
+        else
+            player.enabled = true;
     }
 
     private void Draw()
@@ -92,6 +97,7 @@ public class Inventory : MonoBehaviour
                     if (GUI.GetNameOfFocusedControl() == slotIndex[i].ToString())
                     {
                         GUI.DrawTexture(iconRect, inventory[i].icon);
+                        // when item has been removed still shows its description
                         GUI.Box(textRect, inventory[i].description, "box");
                     }
 
