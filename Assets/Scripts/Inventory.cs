@@ -69,6 +69,10 @@ public class Inventory : MonoBehaviour
     {
         GUI.skin = skin;
 
+        Rect iconRect = new Rect(200, 200, 100, 100);
+        Rect textRect = new Rect(200, 300, 100, 50);
+        GUI.Box(iconRect, "", "box");
+        GUI.Box(textRect, "", "box");
         int i = 0;
         for(int y = 0; y < slotY; y++)
         {
@@ -84,6 +88,12 @@ public class Inventory : MonoBehaviour
                 if(inventory[i].id != null)
                 {
                     GUI.DrawTexture(slotRect, inventory[i].icon);
+
+                    if (GUI.GetNameOfFocusedControl() == slotIndex[i].ToString())
+                    {
+                        GUI.DrawTexture(iconRect, inventory[i].icon);
+                        GUI.Box(textRect, inventory[i].description, "box");
+                    }
 
                     if (buttons[i])
                     {
