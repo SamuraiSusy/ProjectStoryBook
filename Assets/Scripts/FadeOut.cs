@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+// musta boxi tulee siitä mustasta kuvasta...
 public class FadeOut : MonoBehaviour
 {
     public GUITexture texture;
@@ -24,11 +25,11 @@ public class FadeOut : MonoBehaviour
 	// Update is called once per frame
 	private void Update ()
     {
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            fadeOut = true;
-            texture.enabled = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.F))
+        //{
+        //    fadeOut = true;
+        //    texture.enabled = true;
+        //}
 
         if(fadeOut)
             FadeToBlack();
@@ -50,6 +51,12 @@ public class FadeOut : MonoBehaviour
             }
         }
 	}
+
+    public void StartFading()
+    {
+        fadeOut = true;
+        texture.enabled = true;
+    }
 
     private void FadeToClear()
     {

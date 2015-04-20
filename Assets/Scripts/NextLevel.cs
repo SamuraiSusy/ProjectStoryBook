@@ -7,6 +7,7 @@ public class NextLevel : MonoBehaviour
 
     public GameObject player;
     private PlayerControl playerControl;
+    private FadeOut fadeOut;
 
     //public float point;
     public float cameraX, cameraY;
@@ -21,6 +22,7 @@ public class NextLevel : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+        fadeOut = GameObject.FindGameObjectWithTag("Holder").GetComponent<FadeOut>();
 
         showButtons = false;
         move = false;
@@ -47,6 +49,7 @@ public class NextLevel : MonoBehaviour
         GUI.SetNextControlName(buttons[0]);
         if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0]))
         {
+            fadeOut.StartFading();
             showButtons = false;
             move = true;
         }
