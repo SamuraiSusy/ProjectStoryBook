@@ -8,7 +8,7 @@ public class NextLevel : MonoBehaviour
     public GameObject player;
     private PlayerControl playerControl;
 
-    public float point;
+    //public float point;
     public float cameraX, cameraY;
 
     //public bool muttuja jonka avulla seuraava kenttä määritellään
