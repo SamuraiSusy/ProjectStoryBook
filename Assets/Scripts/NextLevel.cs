@@ -6,6 +6,7 @@ public class NextLevel : MonoBehaviour
     public GUISkin skin;
 
     public GameObject player;
+    public float playerBetween1, playerBetween2;
     private PlayerControl playerControl;
     private FadeOut fadeOut;
 
@@ -30,13 +31,14 @@ public class NextLevel : MonoBehaviour
 
     private void Update()
     {
-        if (showButtons)
-        {
-            playerControl.speed = 0;
-            WhichButton();
-        }
+        if (player.transform.position.y > playerBetween1 &&
+                player.transform.position.y <= playerBetween2)
+            this.enabled = true;
         else
-            playerControl.speed = 5;
+            this.enabled = false;
+
+        if (showButtons)
+            CreateButtons();
     }
 
     private void MovePlayer()
