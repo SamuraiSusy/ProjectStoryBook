@@ -21,7 +21,7 @@ public class Inventory : MonoBehaviour
     // Use this for initialization
 	private void Start ()
     {
-        database = GameObject.FindGameObjectWithTag("Database").GetComponent<Database>();
+        database = GameObject.FindGameObjectWithTag("Holder").GetComponent<Database>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
 
         slotIndex = new int[slotX * slotY];

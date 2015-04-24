@@ -30,8 +30,18 @@ public class NextLevel : MonoBehaviour
 
     private void Update()
     {
-        if(showButtons)
+        if (showButtons)
+        {
+            playerControl.speed = 0;
             WhichButton();
+        }
+        else
+            playerControl.speed = 5;
+    }
+
+    private void MovePlayer()
+    {
+        player.transform.position = new Vector3(cameraX, cameraY);
     }
 
     private void OnGUI()
@@ -117,7 +127,7 @@ public class NextLevel : MonoBehaviour
     {
         if (col.gameObject.tag == "Player" && move)
         {
-            player.transform.position = new Vector3(cameraX, cameraY);
+            Invoke("MovePlayer", 0.7f);
             move = false;
         }
     }

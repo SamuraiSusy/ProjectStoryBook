@@ -64,15 +64,11 @@ public class StopCameraRight : MonoBehaviour
 
     private void MoveCameraToRight()
     {
-        if (worldY < playerPos.y &&
-            playerPos.y < worldY2)
-        {
             if (playerPos.x >= worldX)
             {
                 otherCamera.transform.position = new Vector3(newCameraX, newCameraY, -10f);
                 otherCamera.enabled = true;
             }
-        }
     }
 
     private void ReturnCameraPos()
@@ -85,27 +81,32 @@ public class StopCameraRight : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             didCollide = true;
-
-            if (didCollide && cameraReturned)
-            {
-                cameraReturned = false;
-                callOnce2 = false;
-            }
         }
     }
+
+    //private void OnTriggerStay2D(Collider2D col)
+    //{
+    //    if (col.gameObject.tag == "Player")
+    //    {
+    //        if (didCollide)
+    //            cameraReturned = false;
+    //    }
+    //}
 
     private void OnTriggerExit2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
             if (didCollide)
+            {
                 cameraReturned = false;
-
+            }
             if (didCollide && !cameraReturned)
             {
-                didCollide = false;
                 cameraReturned = true;
+                didCollide = false;
                 callOnce = false;
+                callOnce2 = false;
             }
         }
     }
