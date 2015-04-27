@@ -3,6 +3,7 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
+    public GameObject exclamationIcon;
     //todo animaatio
     public float speed;
     private bool isAnimPlaying;
@@ -11,7 +12,6 @@ public class PlayerControl : MonoBehaviour
     private void Start()
     {
         speed = 5f;
-
     }
 
     // Update is called once per frame
@@ -38,6 +38,11 @@ public class PlayerControl : MonoBehaviour
             isAnimPlaying = true;
             transform.Translate(walk, 0, 0);
         }
+    }
+
+    public void ShowExclamation(bool show)
+    {
+        exclamationIcon.SetActive(show);
     }
 
     private void OnCollisionStay2D(Collision2D col)

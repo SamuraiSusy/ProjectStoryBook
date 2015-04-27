@@ -48,6 +48,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\CollectableText.cs" />
      <Compile Include="Assets\Scripts\Database.cs" />
+     <Compile Include="Assets\Scripts\Examine.cs" />
      <Compile Include="Assets\Scripts\FadeOut.cs" />
      <Compile Include="Assets\Scripts\Inventory.cs" />
      <Compile Include="Assets\Scripts\Item.cs" />

@@ -4,7 +4,6 @@ using System.Collections;
 public class NextLevel : MonoBehaviour
 {
     public GUISkin skin;
-
     public GameObject player;
     public float playerBetween1, playerBetween2;
     private PlayerControl playerControl;
@@ -31,14 +30,17 @@ public class NextLevel : MonoBehaviour
 
     private void Update()
     {
-        if (player.transform.position.y > playerBetween1 &&
-                player.transform.position.y <= playerBetween2)
-            this.enabled = true;
-        else
-            this.enabled = false;
+    //    if (player.transform.position.y > playerBetween1 &&
+    //            player.transform.position.y <= playerBetween2)
+    //        this.enabled = true;
+    //    else
+    //        this.enabled = false;
 
         if (showButtons)
+        {
             CreateButtons();
+            WhichButton();
+        }
     }
 
     private void MovePlayer()
@@ -48,7 +50,6 @@ public class NextLevel : MonoBehaviour
 
     private void OnGUI()
     {
-        GUI.skin = skin;
         if(showButtons)
         {
             GUI.Box(new Rect(100, 100, 100, 100), "Haluatko siirtyä seuraavalle tasolle?");
