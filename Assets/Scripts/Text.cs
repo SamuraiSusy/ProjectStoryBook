@@ -12,6 +12,7 @@ public class Text : MonoBehaviour
 
     private bool collided;
 
+    private PlayerControl playerControl;
     private Examine examine;
 
 	// Use this for initialization
@@ -23,12 +24,16 @@ public class Text : MonoBehaviour
 
         collided = false;
 
+        playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
         examine = GameObject.FindGameObjectWithTag("Examine").GetComponent<Examine>();
 	}
 	
 	// Update is called once per frame
 	private void Update ()
     {
+        if(show)
+            playerControl.isStopped = true;
+
 	    if(Input.GetKeyUp(KeyCode.Space) && show)
         {
             examine.showExaminedItem = true;
@@ -41,6 +46,7 @@ public class Text : MonoBehaviour
                 current = text[0];
                 show = false;
                 examine.showExclamation = false;
+                playerControl.isStopped = false;
             }
         }
 

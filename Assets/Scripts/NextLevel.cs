@@ -40,6 +40,7 @@ public class NextLevel : MonoBehaviour
         {
             CreateButtons();
             WhichButton();
+            playerControl.isStopped = true;
         }
     }
 
@@ -65,12 +66,14 @@ public class NextLevel : MonoBehaviour
             fadeOut.StartFading();
             showButtons = false;
             move = true;
+            playerControl.isStopped = false;
         }
 
         GUI.SetNextControlName(buttons[1]);
         if (GUI.Button(new Rect(0, 100, 100, 100), buttons[1]))
         {
             showButtons = false;
+            playerControl.isStopped = false;
             move = false;
         }
 

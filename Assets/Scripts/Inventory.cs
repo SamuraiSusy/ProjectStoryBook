@@ -11,7 +11,7 @@ public class Inventory : MonoBehaviour
     public int slotX, slotY;
 
     private Database database;
-    private PlayerControl player;
+    private PlayerControl playerControl;
 
     private int[] slotIndex;
     private int selected;
@@ -22,7 +22,7 @@ public class Inventory : MonoBehaviour
 	private void Start ()
     {
         database = GameObject.FindGameObjectWithTag("Holder").GetComponent<Database>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+        playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
 
         slotIndex = new int[slotX * slotY];
 
@@ -47,8 +47,11 @@ public class Inventory : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.DownArrow))
             selected = SelectSlot(inventory, selected, "down");
 
-        if (Input.GetKeyUp(KeyCode.I))
-            show = !show;
+        if (Input.GetKeyUp (KeyCode.I))
+		{
+			show = !show;
+			playerControl.isStopped = false;
+		}
 
         if(Input.GetKeyDown(KeyCode.F1))
         {
@@ -63,11 +66,9 @@ public class Inventory : MonoBehaviour
     {
         if (show)
         {
-            player.enabled = false;
+            playerControl.isStopped = true;
             Draw();
         }
-        else
-            player.enabled = true;
     }
 
     private void Draw()

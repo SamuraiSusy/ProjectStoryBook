@@ -5,18 +5,26 @@ public class PlayerControl : MonoBehaviour
 {
     public GameObject exclamationIcon;
     //todo animaatio
+    public bool isStopped;
     public float speed;
-    private bool isAnimPlaying;
+    //private bool isAnimPlaying;
 
     // Use this for initialization
     private void Start()
     {
+        isStopped = false;
         speed = 5f;
     }
 
     // Update is called once per frame
     private void Update()
     {
+        if (!isStopped)
+            speed = 5f;
+        else if(isStopped)
+            speed = 0;
+
+        Debug.Log(isStopped);
     }
 
     private void FixedUpdate()
@@ -30,12 +38,12 @@ public class PlayerControl : MonoBehaviour
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            isAnimPlaying = true;
+            //isAnimPlaying = true;
             transform.Translate(walk, 0, 0);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            isAnimPlaying = true;
+            //isAnimPlaying = true;
             transform.Translate(walk, 0, 0);
         }
     }

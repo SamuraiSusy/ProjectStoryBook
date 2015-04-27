@@ -18,6 +18,7 @@ public class CollectableText : MonoBehaviour
     private string[] buttons = { "kylla", "ei" };
     private int selected;
 
+    private PlayerControl playerControl;
     private Inventory inventory;
 
     // Use this for initialization
@@ -32,6 +33,7 @@ public class CollectableText : MonoBehaviour
 
         selected = 0;
 
+        playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
         inventory = GameObject.FindGameObjectWithTag("Database").GetComponent<Inventory>();
     }
 
@@ -40,6 +42,7 @@ public class CollectableText : MonoBehaviour
     {
         if (Input.GetKeyUp(KeyCode.Space) && show || show2)
         {
+            playerControl.isStopped = false;
             WhichText();
         }
 
@@ -91,6 +94,7 @@ public class CollectableText : MonoBehaviour
             show2 = false;
             temp = text[count];
             showButtons = false;
+            playerControl.isStopped = false;
             Destroy(this.gameObject);
         }
 
