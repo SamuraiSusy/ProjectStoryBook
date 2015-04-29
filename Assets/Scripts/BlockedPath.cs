@@ -14,6 +14,12 @@ public class BlockedPath : MonoBehaviour
 
     private PlayerControl playerControl;
     private Examine examine;
+    private DestroyCreateEnable destroyCreateEnable;
+
+    // new strange man and enable teleporter to the next level
+    public GameObject prefab;
+    public GameObject destroiableGO;
+    public GameObject prefab2;
 
     // Use this for initialization
     private void Start()
@@ -26,6 +32,7 @@ public class BlockedPath : MonoBehaviour
 
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
         examine = GameObject.FindGameObjectWithTag("Examine").GetComponent<Examine>();
+        destroyCreateEnable = GetComponent<DestroyCreateEnable>();
     }
 
     // Update is called once per frame
@@ -47,6 +54,7 @@ public class BlockedPath : MonoBehaviour
                 show = false;
                 examine.showExclamation = false;
                 playerControl.isStopped = false;
+                EnablePath();
             }
         }
 
@@ -54,6 +62,17 @@ public class BlockedPath : MonoBehaviour
         {
             examine.showExaminedItem = false;
         }
+    }
+
+    // enables the next level and changes androgyyni's dialogue
+    private void EnablePath()
+    {
+        Debug.Log(1);
+        // starnge man
+        destroyCreateEnable.CreateGO(prefab, new Vector3(11.77f, -0.31f));
+        destroyCreateEnable.DestoryGameObject(destroiableGO, 0);
+        // teleporter
+        destroyCreateEnable.CreateGO(prefab, new Vector3(6.07f, -1.63f));
     }
 
     private void OnGUI()

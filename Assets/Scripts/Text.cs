@@ -36,7 +36,6 @@ public class Text : MonoBehaviour
 
 	    if(Input.GetKeyUp(KeyCode.Space) && show)
         {
-            examine.showExaminedItem = true;
             current = text[count];
             count++;
 
@@ -61,7 +60,10 @@ public class Text : MonoBehaviour
         GUI.skin = skin;
         Rect boxRect = new Rect(300, 300, 150, 100);
         if (show)
+        {
             GUI.Box(boxRect, current, "box");
+            examine.showExaminedItem = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
