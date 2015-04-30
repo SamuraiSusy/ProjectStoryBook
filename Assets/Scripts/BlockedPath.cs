@@ -17,9 +17,8 @@ public class BlockedPath : MonoBehaviour
     private DestroyCreateEnable destroyCreateEnable;
 
     // new strange man and enable teleporter to the next level
-    public GameObject prefab;
-    public GameObject destroiableGO;
-    public GameObject prefab2;
+    public GameObject prefab, prefab2;
+    public GameObject destroiableGO, destroiableGO2;
 
     // Use this for initialization
     private void Start()
@@ -69,10 +68,11 @@ public class BlockedPath : MonoBehaviour
     {
         Debug.Log(1);
         // starnge man
-        destroyCreateEnable.CreateGO(prefab, new Vector3(11.77f, -0.31f));
+        destroyCreateEnable.CreateGO(prefab, new Vector3(11.77f, -0.77f));
         destroyCreateEnable.DestoryGameObject(destroiableGO, 0);
         // teleporter
-        destroyCreateEnable.CreateGO(prefab, new Vector3(6.07f, -1.63f));
+        destroyCreateEnable.CreateGO(prefab2, new Vector3(6.07f, -1.63f));
+        destroyCreateEnable.DestoryGameObject(destroiableGO2, 0);
     }
 
     private void OnGUI()

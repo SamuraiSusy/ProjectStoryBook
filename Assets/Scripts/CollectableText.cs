@@ -34,7 +34,7 @@ public class CollectableText : MonoBehaviour
         selected = 0;
 
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
-        inventory = GameObject.FindGameObjectWithTag("Database").GetComponent<Inventory>();
+        inventory = GameObject.FindGameObjectWithTag("Holder").GetComponent<Inventory>();
     }
 
     // Update is called once per frame
