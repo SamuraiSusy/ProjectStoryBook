@@ -25,7 +25,9 @@ public class Text : MonoBehaviour
         collided = false;
 
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
-        examine = GameObject.FindGameObjectWithTag("Examine").GetComponent<Examine>();
+        examine = GetComponent<Examine>();
+
+        examine.enabled = false;
 	}
 	
 	// Update is called once per frame
@@ -59,10 +61,15 @@ public class Text : MonoBehaviour
     {
         GUI.skin = skin;
         Rect boxRect = new Rect(300, 300, 150, 100);
-        if (show)
+        if (show && examine.examinedItem != null)
         {
             GUI.Box(boxRect, current, "box");
             examine.showExaminedItem = true;
+        }
+        else if (show && examine.examinedItem == null)
+        {
+            GUI.Box(boxRect, current, "box");
+            examine.showExaminedItem = false;
         }
     }
 
@@ -71,6 +78,7 @@ public class Text : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             collided = true;
+            examine.enabled = true;
         }
     }
 
@@ -88,6 +96,7 @@ public class Text : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             collided = false;
+            examine.enabled = false;
         }
     }
 }

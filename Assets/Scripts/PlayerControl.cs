@@ -14,6 +14,8 @@ public class PlayerControl : MonoBehaviour
     {
         isStopped = false;
         speed = 5f;
+
+        ShowExclamation(false);
     }
 
     // Update is called once per frame
@@ -23,8 +25,6 @@ public class PlayerControl : MonoBehaviour
             speed = 5f;
         else if(isStopped)
             speed = 0;
-
-        Debug.Log(isStopped);
     }
 
     private void FixedUpdate()
@@ -47,6 +47,11 @@ public class PlayerControl : MonoBehaviour
             transform.Translate(walk, 0, 0);
         }
     }
+
+    //public bool ShowExclamationMark(bool show)
+    //{
+    //    return show;
+    //}
 
     public void ShowExclamation(bool show)
     {

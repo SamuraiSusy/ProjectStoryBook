@@ -10,26 +10,36 @@ public class Examine : MonoBehaviour
     public bool showExaminedItem;
     public bool showExclamation;
 
+    private bool onceTrue, onceFalse;
+
 	// Use this for initialization
 	private void Start ()
     {
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+
+        onceTrue = false;
+        onceFalse = false;
 	}
 	
 	// Update is called once per frame
 	private void Update ()
     {
         if (showExclamation)
-            playerControl.ShowExclamation(true);
-        else if (!showExclamation)
-            playerControl.ShowExclamation(false);
+        {
+            playerControl.exclamationIcon.SetActive(true);
+        }
+        if (!showExclamation)
+        {
+            playerControl.exclamationIcon.SetActive(false);
+        }
+
 	}
 
     private void OnGUI()
     {
         GUI.skin = skin;
 
-        if(showExaminedItem)
+        if (showExaminedItem && examinedItem != null)
             DrawExaminedItem();
     }
 

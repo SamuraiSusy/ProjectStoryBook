@@ -30,7 +30,7 @@ public class BlockedPath : MonoBehaviour
         collided = false;
 
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
-        examine = GameObject.FindGameObjectWithTag("Examine").GetComponent<Examine>();
+        examine = GetComponent<Examine>();
         destroyCreateEnable = GetComponent<DestroyCreateEnable>();
     }
 
@@ -66,7 +66,6 @@ public class BlockedPath : MonoBehaviour
     // enables the next level and changes androgyyni's dialogue
     private void EnablePath()
     {
-        Debug.Log(1);
         // starnge man
         destroyCreateEnable.CreateGO(prefab, new Vector3(11.77f, -0.77f));
         destroyCreateEnable.DestoryGameObject(destroiableGO, 0);

@@ -13,10 +13,10 @@ public class NextLevel : MonoBehaviour
     public float cameraX, cameraY;
 
     //public bool muttuja jonka avulla seuraava kenttä määritellään
-
+    public string transferText;
     private string[] buttons = { "kylla", "ei" };
     private int selected;
-    private bool showButtons, move;
+    private bool showBox, showButtons, move;
 
     private void Start()
     {
@@ -30,18 +30,13 @@ public class NextLevel : MonoBehaviour
 
     private void Update()
     {
-    //    if (player.transform.position.y > playerBetween1 &&
-    //            player.transform.position.y <= playerBetween2)
-    //        this.enabled = true;
-    //    else
-    //        this.enabled = false;
-
         if (showButtons)
         {
-            CreateButtons();
             WhichButton();
             playerControl.isStopped = true;
         }
+
+        Debug.Log(showButtons);
     }
 
     private void MovePlayer()
@@ -53,8 +48,8 @@ public class NextLevel : MonoBehaviour
     {
         if(showButtons)
         {
-            GUI.Box(new Rect(100, 100, 100, 100), "Haluatko siirtyä seuraavalle tasolle?");
-            CreateButtons();
+            GUI.Box(new Rect(100, 100, 100, 100), transferText);
+            //CreateButtons();
         }
     }
 
@@ -64,6 +59,7 @@ public class NextLevel : MonoBehaviour
         if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0]))
         {
             fadeOut.StartFading();
+            showBox = false;
             showButtons = false;
             move = true;
             playerControl.isStopped = false;
@@ -72,6 +68,7 @@ public class NextLevel : MonoBehaviour
         GUI.SetNextControlName(buttons[1]);
         if (GUI.Button(new Rect(0, 100, 100, 100), buttons[1]))
         {
+            showBox = false;
             showButtons = false;
             playerControl.isStopped = false;
             move = false;
@@ -125,16 +122,33 @@ public class NextLevel : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            showButtons = true;
+            showBox = true;
         }
     }
 
     private void OnTriggerStay2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Player" && move)
+        if (col.gameObject.tag == "Player")
         {
-            Invoke("MovePlayer", 0.7f);
-            move = false;
+            if (Input.GetKeyDown(KeyCode.Space))
+                showButtons = true;
+
+            //else if (move)
+            //{
+            //    Invoke("MovePlayer", 0.7f);
+            //    move = false;
+            //}
         }
+
+
+        //if (col.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    showButtons = true;
+        //}
+        //if (col.gameObject.tag == "Player" && move && showButtons)
+        //{
+        //    Invoke("MovePlayer", 0.7f);
+        //    move = false;
+        //}
     }
 }
