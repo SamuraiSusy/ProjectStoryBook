@@ -5,14 +5,14 @@ public class NextLevel : MonoBehaviour
 {
     public GUISkin skin;
     public GameObject player;
-    public float playerBetween1, playerBetween2;
+    //public float playerBetween1, playerBetween2;
     private PlayerControl playerControl;
+    private Examine examine;
     private FadeOut fadeOut;
 
     //public float point;
     public float cameraX, cameraY;
 
-    //public bool muttuja jonka avulla seuraava kenttä määritellään
     public string transferText;
     private string[] buttons = { "kylla", "ei" };
     private int selected;
@@ -22,6 +22,7 @@ public class NextLevel : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+        examine = GetComponent<Examine>();
         fadeOut = GameObject.FindGameObjectWithTag("Holder").GetComponent<FadeOut>();
 
         showButtons = false;
@@ -48,8 +49,8 @@ public class NextLevel : MonoBehaviour
     {
         if(showButtons)
         {
-            GUI.Box(new Rect(100, 100, 100, 100), transferText);
-            //CreateButtons();
+            GUI.Box(new Rect(100, 100, 100, 100), transferText, "box");
+            CreateButtons();
         }
     }
 
@@ -123,6 +124,7 @@ public class NextLevel : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             showBox = true;
+            examine.enabled = true;
         }
     }
 
@@ -133,11 +135,11 @@ public class NextLevel : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
                 showButtons = true;
 
-            //else if (move)
-            //{
-            //    Invoke("MovePlayer", 0.7f);
-            //    move = false;
-            //}
+            else if (move)
+            {
+                Invoke("MovePlayer", 0.7f);
+                move = false;
+            }
         }
 
 
@@ -150,5 +152,13 @@ public class NextLevel : MonoBehaviour
         //    Invoke("MovePlayer", 0.7f);
         //    move = false;
         //}
+    }
+
+    private void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Player")
+        {
+            examine.enabled = false;
+        }
     }
 }

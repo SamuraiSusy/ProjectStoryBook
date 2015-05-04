@@ -26,11 +26,11 @@ public class Examine : MonoBehaviour
     {
         if (showExclamation)
         {
-            playerControl.exclamationIcon.SetActive(true);
+            playerControl.ShowExclamation(true);
         }
         if (!showExclamation)
         {
-            playerControl.exclamationIcon.SetActive(false);
+            playerControl.ShowExclamation(false);
         }
 
 	}
