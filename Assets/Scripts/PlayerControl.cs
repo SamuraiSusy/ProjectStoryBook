@@ -6,16 +6,18 @@ public class PlayerControl : MonoBehaviour
     public GameObject exclamationIcon;
     //todo animaatio
     public bool isStopped;
-    public float walkingSpeed;
-    public bool isMoving;
     public float speed;
-    //private bool isAnimPlaying;
+    public bool isMoving;
+
+    private Animator anim;
 
     // Use this for initialization
     private void Start()
     {
         isStopped = false;
-        walkingSpeed = 5f;
+        speed = 5f;
+
+        anim = GetComponent<Animator>();
 
         ShowExclamation(false);
     }
@@ -24,19 +26,23 @@ public class PlayerControl : MonoBehaviour
     private void Update()
     {
         if (!isStopped)
-            walkingSpeed = 5f;
+            speed = 5f;
         else if(isStopped)
-            walkingSpeed = 0;
-
-        if (Input.GetKeyUp(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.RightArrow))
-            isMoving = false;
-
-        if (isMoving)
-            speed = 1;
-        else
             speed = 0;
 
-        Debug.Log(exclamationIcon.activeSelf + " huutomerkki");
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            anim.SetBool("moving", isMoving);
+        }
+
+        else if (Input.GetKeyUp(KeyCode.LeftArrow) && Input.GetKeyUp(KeyCode.RightArrow))
+        {
+            anim.SetBool("moving", isMoving);
+            isMoving = false;
+        }
+
+
+        //Debug.Log(exclamationIcon.activeSelf + " huutomerkki");
     }
 
     private void FixedUpdate()
@@ -46,11 +52,10 @@ public class PlayerControl : MonoBehaviour
 
     private void Move()
     {
-        float walk = Input.GetAxis("Horizontal") * walkingSpeed * Time.deltaTime;
+        float walk = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
         if (Input.GetKey(KeyCode.LeftArrow))
         {
-            //isAnimPlaying = true;
             isMoving = true;
             transform.Translate(walk, 0, 0);
             
@@ -58,11 +63,28 @@ public class PlayerControl : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            //isAnimPlaying = true;
             isMoving = true;
             transform.Translate(walk, 0, 0);
         }
     }
+
+    //private void Move2()
+    //{
+    //    float h = Input.GetAxis("Horizontal");
+    //    float walk = h * speed * Time.deltaTime;
+    //    int moving
+    //    anim.SetFloat("speed", walk);
+    //    Debug.Log("walk " + walk);
+
+    //    if (Input.GetKey(KeyCode.LeftArrow))
+    //    {
+    //        transform.Translate(Vector3.right * walk);
+    //    }
+    //    else if (Input.GetKey(KeyCode.RightArrow))
+    //    {
+    //        transform.Translate(Vector3.right * walk);
+    //    }
+    //}
 
     //public bool ShowExclamationMark(bool show)
     //{
@@ -71,7 +93,7 @@ public class PlayerControl : MonoBehaviour
 
     public void ShowExclamation(bool show)
     {
-        exclamationIcon.SetActive(show);
+        //exclamationIcon.SetActive(show);
     }
 
     private void OnCollisionStay2D(Collision2D col)
