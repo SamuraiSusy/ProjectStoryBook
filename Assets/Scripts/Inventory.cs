@@ -165,4 +165,19 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    public bool InventoryContains(int id)
+    {
+        bool result = false;
+
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            result = inventory[i].id == id;
+            if (result)
+            {
+                break;
+            }
+        }
+        return result;
+    }
 }

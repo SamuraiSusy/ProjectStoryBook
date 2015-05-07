@@ -14,7 +14,8 @@ public class NextLevel : MonoBehaviour
     public float cameraX, cameraY;
 
     public string transferText;
-    private string[] buttons = { "kylla", "ei" };
+    //private string current;
+    private string[] buttons = { "Yes.", "No." };
     private int selected;
     private bool showBox, showButtons, move;
 
@@ -37,7 +38,7 @@ public class NextLevel : MonoBehaviour
             playerControl.isStopped = true;
         }
 
-        Debug.Log(showButtons);
+        //Debug.Log(showButtons);
     }
 
     private void MovePlayer()
@@ -59,11 +60,11 @@ public class NextLevel : MonoBehaviour
         GUI.SetNextControlName(buttons[0]);
         if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0]))
         {
-            fadeOut.StartFading();
-            showBox = false;
-            showButtons = false;
-            move = true;
-            playerControl.isStopped = false;
+            //fadeOut.StartFading();
+            //showBox = false;
+            //showButtons = false;
+            //move = true;
+            //playerControl.isStopped = false;
         }
 
         GUI.SetNextControlName(buttons[1]);
@@ -135,7 +136,7 @@ public class NextLevel : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space))
                 showButtons = true;
 
-            else if (move)
+            if (move)
             {
                 Invoke("MovePlayer", 0.7f);
                 move = false;

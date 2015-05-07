@@ -7,7 +7,7 @@ public class PaintingWomanWithPin : MonoBehaviour
     // kiinnitä ykso jokaiseen objektiin!!!11!
     //public string first;
     public int itemID;
-    public string[] text; // tämän pituus saa olla saman pituinen kuin tekstiä on
+    public string[] text; // yks ylimääränen loppuun
     public string text2;
     private bool collided;
     private bool show, show2;
@@ -25,7 +25,6 @@ public class PaintingWomanWithPin : MonoBehaviour
 
     // hairpinless woman
     public GameObject prefab;
-    public GameObject destroiableGO;
 
     // Use this for initialization
     private void Start()
@@ -41,6 +40,8 @@ public class PaintingWomanWithPin : MonoBehaviour
 
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
         inventory = GameObject.FindGameObjectWithTag("Holder").GetComponent<Inventory>();
+		examine = GetComponent<Examine>();
+		destroyCreateEnable = GetComponent<DestroyCreateEnable>();
     }
 
     // Update is called once per frame
@@ -95,13 +96,17 @@ public class PaintingWomanWithPin : MonoBehaviour
         GUI.SetNextControlName(buttons[0]);
         if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0], "box"))
         {
+            // add to inventory
             inventory.AddItem(itemID);
             count = 0;
             show2 = false;
             temp = text[count];
             showButtons = false;
             playerControl.isStopped = false;
+
+            // destroy collected item
             Destroy(this.gameObject);
+            TakePin();
         }
 
         GUI.SetNextControlName(buttons[1]);
@@ -111,15 +116,16 @@ public class PaintingWomanWithPin : MonoBehaviour
             show2 = false;
             temp = text[count];
             showButtons = false;
+            playerControl.isStopped = false;
         }
 
         GUI.FocusControl(buttons[selected]);
     }
 
+    // destroys cur object
     private void TakePin()
     {
         destroyCreateEnable.CreateGO(prefab, new Vector3(7.35f, -40.1f));
-        destroyCreateEnable.DestoryGameObject(destroiableGO, 0);
     }
 
     private int ButtonSelection(string[] buttonsArray, int selectedItem, string direction)

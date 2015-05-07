@@ -66,7 +66,7 @@ public class PaintingWoman : MonoBehaviour
     private void CreateHairpinlessWoman()
     {
         // hairpinless
-        destroyCreateEnable.CreateGO(prefab, new Vector3(7.35f, -40,1f));
+        destroyCreateEnable.CreateGO(prefab, new Vector3(7.35f, -40.1f));
         destroyCreateEnable.DestoryGameObject(destroiableGO, 0);
     }
 
