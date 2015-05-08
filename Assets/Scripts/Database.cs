@@ -9,10 +9,10 @@ public class Database : MonoBehaviour
 	// Use this for initialization
 	private void Start ()
     {
-        items.Add(new Item("Hair pin", 1,"item 1"));
-        items.Add(new Item("Left scissor half", 2, "item 2"));
-        items.Add(new Item("Right scissor half", 3, "item 3"));
-        items.Add(new Item("Scissors", 4, "item 4"));
+        items.Add(new Item("Hair pin", 1, "An old bobby pin."));
+        items.Add(new Item("Left scissor half", 2, "Left"));
+        items.Add(new Item("Right scissor half", 3, "Right"));
+        items.Add(new Item("Scissors", 4, "Together again."));
         items.Add(new Item("Item5", 5, "item 5"));
         items.Add(new Item("Item6", 6, "item 6"));
         items.Add(new Item("Item7", 7, "item 7"));

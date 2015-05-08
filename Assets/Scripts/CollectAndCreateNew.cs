@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CollectableText : MonoBehaviour
+public class CollectAndCreateNew : MonoBehaviour
 {
     public GUISkin skin;
     // kiinnitä ykso jokaiseen objektiin!!!11!
@@ -21,6 +21,14 @@ public class CollectableText : MonoBehaviour
     private PlayerControl playerControl;
     private Inventory inventory;
     private Examine examine;
+    private DestroyCreateEnable deastroyCreate;
+    private FadeOut fadeOut;
+
+    public Sprite newBackgroundPicture;
+    public float newImagePosX, newImagePosY;
+
+    public GameObject prefab;
+    public float newX, newY;
 
     // Use this for initialization
     private void Start()
@@ -37,6 +45,8 @@ public class CollectableText : MonoBehaviour
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
         inventory = GameObject.FindGameObjectWithTag("Holder").GetComponent<Inventory>();
         examine = GetComponent<Examine>();
+        deastroyCreate = GetComponent<DestroyCreateEnable>();
+        fadeOut = GameObject.FindGameObjectWithTag("Holder").GetComponent<FadeOut>();
     }
 
     // Update is called once per frame
@@ -48,7 +58,7 @@ public class CollectableText : MonoBehaviour
             WhichText();
         }
 
-        if(showButtons)
+        if (showButtons)
             WhichButton();
 
         if (!show)
@@ -112,7 +122,8 @@ public class CollectableText : MonoBehaviour
             temp = text[count];
             showButtons = false;
             playerControl.isStopped = false;
-            Destroy(this.gameObject);
+            CreateNew();
+            Invoke("DestroyCollected", 0.7f);
         }
 
         GUI.SetNextControlName(buttons[1]);
@@ -125,6 +136,29 @@ public class CollectableText : MonoBehaviour
         }
 
         GUI.FocusControl(buttons[selected]);
+    }
+    private void DestroyCollected()
+    {
+        Destroy(this.gameObject);
+    }
+
+    // creates new object, "clone"
+    private void CreateNew()
+    {
+        fadeOut.StartFading();
+        deastroyCreate.CreateGO(prefab, new Vector3(newX, newY));
+        if (newBackgroundPicture != null)
+            Invoke("CreateNewBackground", 0.5f);
+    }
+
+    // you can for example set new background picture
+    private void CreateNewBackground()
+    {
+        Debug.Log("hi");
+        GameObject newBackground = new GameObject();
+        newBackground.AddComponent<SpriteRenderer>();
+        newBackground.GetComponent<SpriteRenderer>().sprite = newBackgroundPicture;
+        newBackground.transform.position = new Vector3(newImagePosX, newImagePosY);
     }
 
     private int ButtonSelection(string[] buttonsArray, int selectedItem, string direction)

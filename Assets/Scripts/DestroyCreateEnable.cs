@@ -15,11 +15,10 @@ public class DestroyCreateEnable : MonoBehaviour
         Instantiate(newGameObject, position, Quaternion.identity);
     }
 
-    // enabloi gameobject tagin avulla
-    // ei toimi, älä käytä
-    public void EnableGameContent(GameObject enablebleObject, string tag)
+    // enabloi/disabloi objektin
+    public void EnableGameContent(GameObject enablebleObject, string name, bool active)
     {
-        enablebleObject = GameObject.FindGameObjectWithTag(tag);
-        enablebleObject.SetActive(true);
+        enablebleObject = GameObject.Find(name);
+        enablebleObject.SetActive(active);
     }
 }

@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CheckItemText : MonoBehaviour
+public class CreateNewObject : MonoBehaviour
 {
     public GUISkin skin;
     public string[] text;
     private bool collided;
-    private bool show, show2;
+    private bool show;
     private string temp;
     private int count;
 
@@ -25,7 +25,6 @@ public class CheckItemText : MonoBehaviour
     {
         collided = false;
         show = false;
-        show2 = false;
         count = 0;
         temp = text[0];
 

@@ -35,6 +35,8 @@ public class PlayerControl : MonoBehaviour
         else if(isStopped)
             speed = 0;
 
+        Debug.Log(isStopped + " isstopped");
+
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
         {
         }

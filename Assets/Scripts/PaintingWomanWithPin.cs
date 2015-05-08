@@ -26,6 +26,10 @@ public class PaintingWomanWithPin : MonoBehaviour
     // hairpinless woman
     public GameObject prefab;
 
+    // doors to the scissor halves
+    private GameObject destroyLeftDoor, destroyRightDoor;
+    public GameObject createLeftDoor, createRightDoor;
+
     // Use this for initialization
     private void Start()
     {
@@ -37,7 +41,6 @@ public class PaintingWomanWithPin : MonoBehaviour
         temp = text[0];
 
         selected = 0;
-
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
         inventory = GameObject.FindGameObjectWithTag("Holder").GetComponent<Inventory>();
 		examine = GetComponent<Examine>();
@@ -126,6 +129,10 @@ public class PaintingWomanWithPin : MonoBehaviour
     private void TakePin()
     {
         destroyCreateEnable.CreateGO(prefab, new Vector3(7.35f, -40.1f));
+        destroyCreateEnable.CreateGO(createLeftDoor, new Vector3(-29.1f, -40.1f));
+        destroyCreateEnable.CreateGO(createRightDoor, new Vector3(-22.6f, -40.1f));
+        destroyCreateEnable.EnableGameContent(destroyLeftDoor, "LeftDoor", false);
+        destroyCreateEnable.EnableGameContent(destroyRightDoor, "RightDoor", false);
     }
 
     private int ButtonSelection(string[] buttonsArray, int selectedItem, string direction)

@@ -5,12 +5,11 @@ public class NextLevel : MonoBehaviour
 {
     public GUISkin skin;
     public GameObject player;
-    //public float playerBetween1, playerBetween2;
     private PlayerControl playerControl;
     private Examine examine;
     private FadeOut fadeOut;
 
-    //public float point;
+    // player's new position
     public float cameraX, cameraY;
 
     public string transferText;
@@ -48,35 +47,42 @@ public class NextLevel : MonoBehaviour
 
     private void OnGUI()
     {
-        if(showButtons)
+        GUI.skin = skin;
+        if(showBox)
         {
-            GUI.Box(new Rect(100, 100, 100, 100), transferText, "box");
-            CreateButtons();
+            if (showButtons)
+            {
+                GUI.Box(new Rect(100, 100, 100, 100), transferText, "box");
+                CreateButtons();
+            }
         }
     }
 
     private void CreateButtons()
     {
-        GUI.SetNextControlName(buttons[0]);
-        if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0]))
+        if (showButtons)
         {
-            //fadeOut.StartFading();
-            //showBox = false;
-            //showButtons = false;
-            //move = true;
-            //playerControl.isStopped = false;
-        }
+            GUI.SetNextControlName(buttons[0]);
+            if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0]))
+            {
+                fadeOut.StartFading();
+                showBox = false;
+                showButtons = false;
+                move = true;
+                playerControl.isStopped = false;
+            }
 
-        GUI.SetNextControlName(buttons[1]);
-        if (GUI.Button(new Rect(0, 100, 100, 100), buttons[1]))
-        {
-            showBox = false;
-            showButtons = false;
-            playerControl.isStopped = false;
-            move = false;
-        }
+            GUI.SetNextControlName(buttons[1]);
+            if (GUI.Button(new Rect(0, 100, 100, 100), buttons[1]))
+            {
+                showBox = false;
+                showButtons = false;
+                playerControl.isStopped = false;
+                move = false;
+            }
 
-        GUI.FocusControl(buttons[selected]);
+            GUI.FocusControl(buttons[selected]);
+        }
     }
 
     private int ButtonSelection(string[] buttonsArray, int selectedItem, string direction)
@@ -133,7 +139,7 @@ public class NextLevel : MonoBehaviour
     {
         if (col.gameObject.tag == "Player")
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyUp(KeyCode.Space))
                 showButtons = true;
 
             if (move)

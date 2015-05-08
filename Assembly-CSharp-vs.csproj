@@ -50,7 +50,9 @@
      <Compile Include="Assets\Scripts\BlockedPath.cs" />
      <Compile Include="Assets\Scripts\CalculateSpeed.cs" />
      <Compile Include="Assets\Scripts\CheckItemText.cs" />
+     <Compile Include="Assets\Scripts\CollectAndCreateNew.cs" />
      <Compile Include="Assets\Scripts\CollectableText.cs" />
+     <Compile Include="Assets\Scripts\CreateNewObject.cs" />
      <Compile Include="Assets\Scripts\Database.cs" />
      <Compile Include="Assets\Scripts\DestroyCreateEnable.cs" />
      <Compile Include="Assets\Scripts\Examine.cs" />
