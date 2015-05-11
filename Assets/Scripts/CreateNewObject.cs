@@ -18,8 +18,6 @@ public class CreateNewObject : MonoBehaviour
     public GameObject destroiableGO;
     public float newX, newY; // new objects coordinates
 
-    // ensin kysytään, haluaako wilhelm käyttää pinniä
-
     // Use this for initialization
     private void Start()
     {
