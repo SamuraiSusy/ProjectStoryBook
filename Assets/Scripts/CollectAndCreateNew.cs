@@ -10,7 +10,7 @@ public class CollectAndCreateNew : MonoBehaviour
     public string[] text;
     public string text2;
     private bool collided;
-    private bool show, show2;
+    private bool show, show2, show3; // 3 only if a sertain item is needed
     private bool showButtons;
     private string temp;
     private int count;
@@ -23,12 +23,17 @@ public class CollectAndCreateNew : MonoBehaviour
     private Examine examine;
     private DestroyCreateEnable deastroyCreate;
     private FadeOut fadeOut;
+    private Text textfield;
 
     public Sprite newBackgroundPicture;
     public float newImagePosX, newImagePosY;
 
-    public GameObject prefab;
-    public float newX, newY;
+    public GameObject prefab, prefab2, destroiableGO;
+    public string gameObjectName;
+    public bool activate, isActive;
+    public float newX, newY, newX2, newY2;
+    public bool needsItem;  // if it is required to have another item
+    public int otherItemID; // to destroy this object
 
     // Use this for initialization
     private void Start()
@@ -43,6 +48,12 @@ public class CollectAndCreateNew : MonoBehaviour
         selected = 0;
 
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
+        if(playerControl == null)
+        {
+            Debug.LogError("playercontrol not found D:");
+            this.enabled = false;
+            return;
+        }
         inventory = GameObject.FindGameObjectWithTag("Holder").GetComponent<Inventory>();
         examine = GetComponent<Examine>();
         deastroyCreate = GetComponent<DestroyCreateEnable>();
@@ -114,6 +125,7 @@ public class CollectAndCreateNew : MonoBehaviour
     private void CreateButtons()
     {
         GUI.SetNextControlName(buttons[0]);
+
         if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0], "box"))
         {
             inventory.AddItem(itemID);
@@ -123,7 +135,7 @@ public class CollectAndCreateNew : MonoBehaviour
             showButtons = false;
             playerControl.isStopped = false;
             CreateNew();
-            Invoke("DestroyCollected", 0.7f);
+            Invoke("DestroyCollected", 0.9f);
         }
 
         GUI.SetNextControlName(buttons[1]);
@@ -133,6 +145,7 @@ public class CollectAndCreateNew : MonoBehaviour
             show2 = false;
             temp = text[count];
             showButtons = false;
+            playerControl.isStopped = false;
         }
 
         GUI.FocusControl(buttons[selected]);
@@ -145,10 +158,25 @@ public class CollectAndCreateNew : MonoBehaviour
     // creates new object, "clone"
     private void CreateNew()
     {
+        Debug.Log(prefab.name);
         fadeOut.StartFading();
         deastroyCreate.CreateGO(prefab, new Vector3(newX, newY));
+        if (prefab2 != null)
+        {
+            Debug.Log(1);
+            deastroyCreate.CreateGO(prefab2, new Vector3(newX2, newY2));
+            deastroyCreate.DestoryGameObject(destroiableGO, 0);
+        }
+        if (activate)
+            EnableOrDisable();
+
         if (newBackgroundPicture != null)
             Invoke("CreateNewBackground", 0.5f);
+    }
+
+    private void EnableOrDisable()
+    {
+        deastroyCreate.EnableDisableContent(gameObjectName, isActive);
     }
 
     // you can for example set new background picture

@@ -21,4 +21,10 @@ public class DestroyCreateEnable : MonoBehaviour
         enablebleObject = GameObject.Find(name);
         enablebleObject.SetActive(active);
     }
+
+    public void EnableDisableContent(string name, bool active)
+    {
+        GameObject go = GameObject.Find(name);
+        go.SetActive(active);
+    }
 }
