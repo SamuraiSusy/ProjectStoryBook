@@ -52,7 +52,7 @@ public class NextLevel : MonoBehaviour
         {
             if (showButtons)
             {
-                GUI.Box(new Rect(100, 100, 100, 100), transferText, "box");
+                GUI.Box(new Rect(100, 100, 100, 100), transferText, "Wilhelm");
                 CreateButtons();
             }
         }

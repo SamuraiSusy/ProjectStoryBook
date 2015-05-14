@@ -88,7 +88,7 @@ public class PaintingWomanWithPin : MonoBehaviour
         GUI.skin = skin;
         Rect boxRect = new Rect(300, 300, 150, 100);
         if (show || show2)
-            GUI.Box(boxRect, temp, "box");
+            GUI.Box(boxRect, temp, "Wilhelm");
 
         if (showButtons)
             CreateButtons();
@@ -97,7 +97,7 @@ public class PaintingWomanWithPin : MonoBehaviour
     private void CreateButtons()
     {
         GUI.SetNextControlName(buttons[0]);
-        if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0], "box"))
+        if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0], "Wilhelm"))
         {
             // add to inventory
             inventory.AddItem(itemID);
@@ -113,7 +113,7 @@ public class PaintingWomanWithPin : MonoBehaviour
         }
 
         GUI.SetNextControlName(buttons[1]);
-        if (GUI.Button(new Rect(0, 100, 100, 100), buttons[1], "box"))
+        if (GUI.Button(new Rect(0, 100, 100, 100), buttons[1], "Wilhelm"))
         {
             count = 0;
             show2 = false;

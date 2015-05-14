@@ -49,7 +49,7 @@ public class Examine : MonoBehaviour
     private void DrawExaminedItem()
     {
         Rect itemRect = new Rect(100, 200, 150, 150);
-        GUI.Box(itemRect, examinedItem, "Box");
+        GUI.Box(itemRect, examinedItem, "Wilhelm");
     }
 
     private void OnTriggerEnter2D(Collider2D col)

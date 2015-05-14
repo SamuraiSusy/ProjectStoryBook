@@ -108,12 +108,12 @@ public class CollectAndCreateNew : MonoBehaviour
 
         if (show || show2 && examine.examinedItem != null)
         {
-            GUI.Box(boxRect, temp, "box");
+            GUI.Box(boxRect, temp, "Wilhelm");
             examine.showExaminedItem = true;
         }
         else if (show || show2 && examine.examinedItem == null)
         {
-            GUI.Box(boxRect, temp, "box");
+            GUI.Box(boxRect, temp, "Wilhelm");
             examine.showExaminedItem = false;
         }
 
@@ -126,7 +126,7 @@ public class CollectAndCreateNew : MonoBehaviour
     {
         GUI.SetNextControlName(buttons[0]);
 
-        if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0], "box"))
+        if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0], "Wilhelm"))
         {
             inventory.AddItem(itemID);
             count = 0;
@@ -139,7 +139,7 @@ public class CollectAndCreateNew : MonoBehaviour
         }
 
         GUI.SetNextControlName(buttons[1]);
-        if (GUI.Button(new Rect(0, 100, 100, 100), buttons[1], "box"))
+        if (GUI.Button(new Rect(0, 100, 100, 100), buttons[1], "Wilhelm"))
         {
             count = 0;
             show2 = false;

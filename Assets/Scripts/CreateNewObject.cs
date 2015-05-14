@@ -70,7 +70,7 @@ public class CreateNewObject : MonoBehaviour
         GUI.skin = skin;
         Rect boxRect = new Rect(300, 300, 150, 100);
         if (show)
-            GUI.Box(boxRect, temp, "box");
+            GUI.Box(boxRect, temp, "Wilhelm");
     }
 
     private void OnTriggerEnter2D(Collider2D col)

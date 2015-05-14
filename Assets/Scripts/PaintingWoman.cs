@@ -75,7 +75,7 @@ public class PaintingWoman : MonoBehaviour
         GUI.skin = skin;
         Rect boxRect = new Rect(300, 300, 150, 100);
         if (show)
-            GUI.Box(boxRect, current, "box");
+            GUI.Box(boxRect, current, "Wilhelm");
     }
 
     private void OnTriggerEnter2D(Collider2D col)

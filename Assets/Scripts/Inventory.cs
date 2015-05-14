@@ -77,8 +77,8 @@ public class Inventory : MonoBehaviour
 
         Rect iconRect = new Rect(200, 200, 100, 100);
         Rect textRect = new Rect(200, 300, 100, 50);
-        GUI.Box(iconRect, "", "box");
-        GUI.Box(textRect, "", "box");
+        GUI.Box(iconRect, "", "Wilhelm");
+        GUI.Box(textRect, "", "Wilhelm");
         int i = 0;
         for(int y = 0; y < slotY; y++)
         {
@@ -89,7 +89,7 @@ public class Inventory : MonoBehaviour
 
                 GUI.SetNextControlName(slotIndex[i].ToString());
 
-                buttons[i] = GUI.Button(slotRect, "", "box");
+                buttons[i] = GUI.Button(slotRect, "", "Wilhelm");
 
                 if(inventory[i].id != null)
                 {
@@ -99,7 +99,7 @@ public class Inventory : MonoBehaviour
                     {
                         GUI.DrawTexture(iconRect, inventory[i].icon);
                         // when item has been removed still shows its description
-                        GUI.Box(textRect, inventory[i].description, "box");
+                        GUI.Box(textRect, inventory[i].description, "Wilhelm");
                     }
 
                     if (buttons[i])

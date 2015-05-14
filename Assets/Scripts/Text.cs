@@ -63,12 +63,12 @@ public class Text : MonoBehaviour
         Rect boxRect = new Rect(300, 300, 150, 100);
         if (show && examine.examinedItem != null)
         {
-            GUI.Box(boxRect, current, "box");
+            GUI.Box(boxRect, current, "Wilhelm");
             examine.showExaminedItem = true;
         }
         else if (show && examine.examinedItem == null)
         {
-            GUI.Box(boxRect, current, "box");
+            GUI.Box(boxRect, current, "Wilhelm");
             examine.showExaminedItem = false;
         }
     }
