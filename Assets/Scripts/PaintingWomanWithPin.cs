@@ -128,7 +128,7 @@ public class PaintingWomanWithPin : MonoBehaviour
     // destroys cur object
     private void TakePin()
     {
-        destroyCreateEnable.CreateGO(prefab, new Vector3(7.35f, -40.1f));
+        destroyCreateEnable.CreateGO(prefab, new Vector3(4.96f, -40.1f));
         destroyCreateEnable.CreateGO(createLeftDoor, new Vector3(-29.1f, -40.1f));
         destroyCreateEnable.CreateGO(createRightDoor, new Vector3(-22.6f, -40.1f));
         destroyCreateEnable.EnableGameContent(destroyLeftDoor, "LeftDoor", false);

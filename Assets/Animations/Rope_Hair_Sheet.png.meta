@@ -1,21 +1,21 @@
 fileFormatVersion: 2
 guid: f2ba87a59ebcbd749812a94fa1e24739
-timeCreated: 1430719677
+timeCreated: 1431937884
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Rope_Hair_Sheet_0
     21300002: Rope_Hair_Sheet_1
     21300004: Rope_Hair_Sheet_2
-    21300006: Rope_Hair_Sheet_3
-    21300008: Rope_Hair_Sheet_4
-    21300010: Rope_Hair_Sheet_6
-    21300012: Rope_Hair_Sheet_8
-    21300014: Rope_Hair_Sheet_9
-    21300016: Rope_Hair_Sheet_10
-    21300018: Rope_Hair_Sheet_11
-    21300020: Rope_Hair_Sheet_12
-    21300022: Rope_Hair_Sheet_5
+    21300006: Rope_Hair_Sheet_4
+    21300008: Rope_Hair_Sheet_6
+    21300010: Rope_Hair_Sheet_10
+    21300012: Rope_Hair_Sheet_5
+    21300014: Rope_Hair_Sheet_7
+    21300016: Rope_Hair_Sheet_11
+    21300018: Rope_Hair_Sheet_9
+    21300020: Rope_Hair_Sheet_8
+    21300022: Rope_Hair_Sheet_3
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -91,7 +91,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Rope_Hair_Sheet_3
+    - name: Rope_Hair_Sheet_4
       rect:
         serializedVersion: 2
         x: 242
@@ -101,7 +101,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Rope_Hair_Sheet_4
+    - name: Rope_Hair_Sheet_6
       rect:
         serializedVersion: 2
         x: 1483
@@ -111,17 +111,17 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Rope_Hair_Sheet_6
+    - name: Rope_Hair_Sheet_10
       rect:
         serializedVersion: 2
-        x: 1441
-        y: 1
+        x: 1438
+        y: 3
         width: 214
         height: 627
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Rope_Hair_Sheet_8
+    - name: Rope_Hair_Sheet_5
       rect:
         serializedVersion: 2
         x: 855
@@ -131,7 +131,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Rope_Hair_Sheet_9
+    - name: Rope_Hair_Sheet_7
       rect:
         serializedVersion: 2
         x: 2093
@@ -141,7 +141,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Rope_Hair_Sheet_10
+    - name: Rope_Hair_Sheet_11
       rect:
         serializedVersion: 2
         x: 2067
@@ -151,7 +151,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Rope_Hair_Sheet_11
+    - name: Rope_Hair_Sheet_9
       rect:
         serializedVersion: 2
         x: 813
@@ -161,7 +161,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Rope_Hair_Sheet_12
+    - name: Rope_Hair_Sheet_8
       rect:
         serializedVersion: 2
         x: 209
@@ -171,7 +171,7 @@ TextureImporter:
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
-    - name: Rope_Hair_Sheet_5
+    - name: Rope_Hair_Sheet_3
       rect:
         serializedVersion: 2
         x: 2119
