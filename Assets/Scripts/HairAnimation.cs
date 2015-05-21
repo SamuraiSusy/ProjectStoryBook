@@ -5,30 +5,19 @@ public class HairAnimation : MonoBehaviour
 {
     private Animator anim;
     private Animation animation1;
-    private bool playOnce;
 
-	// Use this for initialization
-	private void Start ()
+    private void Start()
     {
         anim = GetComponent<Animator>();
         animation1 = GetComponent<Animation>();
+    }
 
-        playOnce = false;
-        anim.SetBool("played", playOnce);
-	}
-	
-	// Update is called once per frame
-	private void Update ()
+    private void Update()
     {
-        if (playOnce)
-            animation1.Play("Hair");
-	}
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        if(col.gameObject.tag == "Player")
+        Debug.Log(animation1.IsPlaying("Hair"));
+        if (Input.GetKeyUp(KeyCode.Q))
         {
-            playOnce = true;
+            animation1.Play();
         }
     }
 }

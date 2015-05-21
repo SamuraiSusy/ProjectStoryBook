@@ -10,6 +10,7 @@ public class PlayerControl : MonoBehaviour
     private bool once, once2, once3;
     private Animator anim;
     private CalculateSpeed calculateSpeed;
+    private FadeOut fadeOut;
 
     // Use this for initialization
     private void Start()
@@ -18,6 +19,7 @@ public class PlayerControl : MonoBehaviour
 
         anim = GetComponent<Animator>();
         calculateSpeed = GetComponent<CalculateSpeed>();
+        fadeOut = GameObject.FindGameObjectWithTag("Holder").GetComponent<FadeOut>();
 
         ShowExclamation(false);
     }
@@ -37,11 +39,11 @@ public class PlayerControl : MonoBehaviour
             once = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow))
+        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || !fadeOut.texture.enabled)
         {
             isStopped = false;
         }
-        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow))
+        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || fadeOut.texture.enabled)
         {
             isStopped = true;
         }
@@ -57,8 +59,6 @@ public class PlayerControl : MonoBehaviour
         float walk = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
 
         anim.SetFloat("speed", Mathf.Abs(walk));
-
-        Debug.Log(Mathf.Abs(walk));
 
         transform.Translate(new Vector3(walk, 0));
     }
