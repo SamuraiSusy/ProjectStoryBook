@@ -1,21 +1,21 @@
 ﻿using UnityEngine;
 using System.Collections;
-// tee sa,a scripti oikealle reunalle
+
 public class StopCameraLeft : MonoBehaviour
 {
-    public Camera otherCamera;
-    private Camera kamera;
+    public Camera otherCamera; // still camera
+    private Camera kamera;  // main camera
     private PlayerControl player;
     private Vector3 playerPos;
 
-    private Vector3 worldPos;
-    public float worldX, worldY, worldY2; // 2 max
-    public float newCameraX, newCameraY;
+    private Vector3 worldPos; // vector that defines player's position when colliding happens
+    public float worldX, worldY; // where player should collide the collider
+    public float newCameraX, newCameraY; // still camera position
 
     private bool didCollide, cameraReturned;
     private bool callOnce, callOnce2;
 
-    private Vector3 posi, worldpos; // for debugging
+    private Vector3 worldpos, posi; // for debugging
 
 	// Use this for initialization
 	void Start ()

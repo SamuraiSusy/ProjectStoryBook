@@ -14,7 +14,7 @@ public class HairAnimation : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log(animation1.IsPlaying("Hair"));
+        //Debug.Log(animation1.IsPlaying("Hair"));
         if (Input.GetKeyUp(KeyCode.Q))
         {
             animation1.Play();

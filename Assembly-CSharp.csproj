@@ -49,6 +49,7 @@
      <Compile Include="Assets\Scripts\Androgyyni.cs" />
      <Compile Include="Assets\Scripts\BlockedPath.cs" />
      <Compile Include="Assets\Scripts\CalculateSpeed.cs" />
+     <Compile Include="Assets\Scripts\ChangeCamera.cs" />
      <Compile Include="Assets\Scripts\CheckItemText.cs" />
      <Compile Include="Assets\Scripts\CollectAndCreateNew.cs" />
      <Compile Include="Assets\Scripts\CollectableText.cs" />
