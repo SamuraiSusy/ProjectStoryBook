@@ -66,9 +66,8 @@
      <Compile Include="Assets\Scripts\PaintingWoman.cs" />
      <Compile Include="Assets\Scripts\PaintingWomanWithPin.cs" />
      <Compile Include="Assets\Scripts\PlayerControl.cs" />
+     <Compile Include="Assets\Scripts\ResetMovingCamera.cs" />
      <Compile Include="Assets\Scripts\ReturnCameras.cs" />
-     <Compile Include="Assets\Scripts\StopCameraLeft.cs" />
-     <Compile Include="Assets\Scripts\StopCameraRight.cs" />
      <Compile Include="Assets\Scripts\Text.cs" />
      <None Include="Assets\Graphics\LICENSE.txt" />
  <Reference Include="UnityEngine.UI">
