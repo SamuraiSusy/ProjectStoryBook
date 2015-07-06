@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+// POISTETAAN
 // TESTISCRIPTI
 public class Androgyyni : MonoBehaviour {
 

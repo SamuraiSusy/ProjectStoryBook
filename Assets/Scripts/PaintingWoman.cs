@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+//POISTETAAN
 public class PaintingWoman : MonoBehaviour
 {
     public GUISkin skin;

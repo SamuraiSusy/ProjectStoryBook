@@ -27,13 +27,18 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (isStopped)
+            speed = 0;
+        else
+            speed = 5; // keksi keino, jolla voi asettaa sen unityn arvoon :oo
+
         // fliping the sprite of player
-        if (Input.GetKeyDown(KeyCode.RightArrow) && !once)
+        if (Input.GetKeyDown(KeyCode.RightArrow) && !isStopped && !once)
         {
             Flip();
             once = true;
         }
-        if (Input.GetKeyDown(KeyCode.LeftArrow) && once)
+        if (Input.GetKeyDown(KeyCode.LeftArrow) && !isStopped && once)
         {
             Flip();
             once = false;
@@ -74,23 +79,8 @@ public class PlayerControl : MonoBehaviour
         transform.localScale = theScale;
     }
 
-    public bool ShowExclamationMark(bool show)
-    {
-        return show;
-    }
-
     public void ShowExclamation(bool show)
     {
         exclamationIcon.SetActive(show);
-    }
-
-    private void OnCollisionStay2D(Collision2D col)
-    {
-
-    }
-
-    private void OnCollisionExit2D(Collision2D col)
-    {
-
     }
 }

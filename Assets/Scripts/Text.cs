@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+//POISTETAAN
 public class Text : MonoBehaviour
 {
     public GUISkin skin;
@@ -19,7 +19,7 @@ public class Text : MonoBehaviour
 	private void Start ()
     {
         show = false;
-        current = text[0];
+        current = "";
         count = 0;
 
         collided = false;
@@ -44,7 +44,7 @@ public class Text : MonoBehaviour
             if(count == text.Length)
             {
                 count = 0;
-                current = text[0];
+                current = "";
                 show = false;
                 examine.showExclamation = false;
                 playerControl.isStopped = false;
@@ -78,7 +78,7 @@ public class Text : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             collided = true;
-            examine.enabled = true;
+            //examine.enabled = true;
         }
     }
 
@@ -96,7 +96,7 @@ public class Text : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             collided = false;
-            examine.enabled = false;
+            //examine.enabled = false;
         }
     }
 }

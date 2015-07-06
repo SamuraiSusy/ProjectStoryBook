@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+// POISTETAAN
 public class ChangeCamera : MonoBehaviour
 {
     public Camera otherCamera; // moveable camera
