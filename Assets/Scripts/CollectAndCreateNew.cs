@@ -54,6 +54,7 @@ public class CollectAndCreateNew : MonoBehaviour
             this.enabled = false;
             return;
         }
+
         inventory = GameObject.FindGameObjectWithTag("Holder").GetComponent<Inventory>();
         examine = GetComponent<Examine>();
         deastroyCreate = GetComponent<DestroyCreateEnable>();

@@ -12,6 +12,8 @@ public class NextLevel : MonoBehaviour
     // player's new position
     public float cameraX, cameraY;
 
+    private float boxW, boxH, boxL, boxT;
+
     public string transferText;
     //private string current;
     private string[] buttons = { "Yes.", "No." };
@@ -24,6 +26,11 @@ public class NextLevel : MonoBehaviour
         playerControl = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerControl>();
         examine = GetComponent<Examine>();
         fadeOut = GameObject.FindGameObjectWithTag("Holder").GetComponent<FadeOut>();
+
+        boxW = 1.14f;
+        boxH = 3.6f;
+        boxL = 16.56f;
+        boxT = 1.55f;
 
         showButtons = false;
         move = false;
@@ -47,12 +54,14 @@ public class NextLevel : MonoBehaviour
 
     private void OnGUI()
     {
+        Rect boxRect = new Rect(Screen.width / boxL, Screen.height / boxT,
+            Screen.width / boxW, Screen.height / boxH);
         GUI.skin = skin;
         if(showBox)
         {
             if (showButtons)
             {
-                GUI.Box(new Rect(100, 100, 100, 100), transferText, "Wilhelm");
+                GUI.Box(boxRect, transferText, "Wilhelm");
                 CreateButtons();
             }
         }
@@ -60,10 +69,13 @@ public class NextLevel : MonoBehaviour
 
     private void CreateButtons()
     {
+        Rect yesRect = new Rect(Screen.width / 8, Screen.height / 1.2f, Screen.width / 8, Screen.height / 8.5f);
+        Rect noRect = new Rect(Screen.width / 3.5f, Screen.height / 1.2f, Screen.width / 8, Screen.height / 8.5f);
+
         if (showButtons)
         {
             GUI.SetNextControlName(buttons[0]);
-            if (GUI.Button(new Rect(0, 0, 100, 100), buttons[0]))
+            if (GUI.Button(yesRect, buttons[0], "CustomButton"))
             {
                 fadeOut.StartFading();
                 showBox = false;
@@ -73,7 +85,7 @@ public class NextLevel : MonoBehaviour
             }
 
             GUI.SetNextControlName(buttons[1]);
-            if (GUI.Button(new Rect(0, 100, 100, 100), buttons[1]))
+            if (GUI.Button(noRect, buttons[1], "CustomButton"))
             {
                 showBox = false;
                 showButtons = false;
@@ -115,12 +127,12 @@ public class NextLevel : MonoBehaviour
 
     private void WhichButton()
     {
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             selected = ButtonSelection(buttons, selected, "up");
         }
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.RightArrow))
         {
             selected = ButtonSelection(buttons, selected, "down");
         }
