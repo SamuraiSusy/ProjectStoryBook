@@ -181,7 +181,7 @@ public class PaintingWomanWithPin : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             collided = true;
-            examine.enabled = true;
+            examine.enabled = true; // heittää null referencen
         }
     }
 

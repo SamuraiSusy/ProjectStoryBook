@@ -3,6 +3,8 @@ using System.Collections;
 
 public class NextLevel : MonoBehaviour
 {
+    public Camera stillCamera; // kun teleporttaus on tapahtunut,
+    public float x, y;          //asetetaan liikkumaton kamera paikoilleen
     public GUISkin skin;
     public GameObject player;
     private PlayerControl playerControl;
@@ -38,10 +40,14 @@ public class NextLevel : MonoBehaviour
 
     private void Update()
     {
+        if(showBox)
+            playerControl.isStopped = true;
+        else
+            playerControl.isStopped = false;
+
         if (showButtons)
         {
             WhichButton();
-            playerControl.isStopped = true;
         }
 
         //Debug.Log(showButtons);
@@ -49,6 +55,14 @@ public class NextLevel : MonoBehaviour
 
     private void MovePlayer()
     {
+        if(stillCamera != null)
+            stillCamera.transform.position = new Vector3(x, y, -10);
+        else
+        {
+            // jos scripti on kiinni prefabissa
+            Camera prefabCam = GameObject.FindGameObjectWithTag("Still").GetComponent<Camera>();
+            prefabCam.transform.position = new Vector3(x, y, -10);
+        }
         player.transform.position = new Vector3(cameraX, cameraY);
     }
 
@@ -81,7 +95,7 @@ public class NextLevel : MonoBehaviour
                 showBox = false;
                 showButtons = false;
                 move = true;
-                playerControl.isStopped = false;
+                //playerControl.isStopped = false;
             }
 
             GUI.SetNextControlName(buttons[1]);
@@ -89,7 +103,7 @@ public class NextLevel : MonoBehaviour
             {
                 showBox = false;
                 showButtons = false;
-                playerControl.isStopped = false;
+                //playerControl.isStopped = false;
                 move = false;
             }
 

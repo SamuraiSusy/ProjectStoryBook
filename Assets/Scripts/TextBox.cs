@@ -38,6 +38,9 @@ public class TextBox : MonoBehaviour
     // for cases 5-6
     private FadeOut fadeOut;
 
+    // for disabled objects
+    public GameObject[] disabledObjects;
+    public float ix, iy;
 
 	// Use this for initialization
 	private void Start ()
@@ -71,11 +74,13 @@ public class TextBox : MonoBehaviour
         else
             player.ShowExclamation(false);
 
-        if(show)
+        if (show)
         {
             player.isStopped = true;
             Control();
         }
+        else
+            player.isStopped = false;
 
         if (boxCase == 4 || boxCase == 5 || boxCase == 6 && showButtons)
             WhichButton();
@@ -96,7 +101,7 @@ public class TextBox : MonoBehaviour
                     {
                         count = 0;
                         current = "";
-                        player.isStopped = false;
+                        //player.isStopped = false;
 
                         show = false;
                     }
@@ -114,7 +119,7 @@ public class TextBox : MonoBehaviour
                     {
                         count = 0;
                         current = "";
-                        player.isStopped = false;
+                        //player.isStopped = false;
 
                         showExaminedObject = false;
 
@@ -134,7 +139,7 @@ public class TextBox : MonoBehaviour
                     {
                         count = 0;
                         current = "";
-                        player.isStopped = false;
+                        //player.isStopped = false;
 
                         if(destroyableGOs.Length != 0)
                         {
@@ -170,7 +175,7 @@ public class TextBox : MonoBehaviour
                     {
                         count = 0;
                         current = "";
-                        player.isStopped = false;
+                        //player.isStopped = false;
 
                         if(isTrue)
                         {
@@ -178,6 +183,13 @@ public class TextBox : MonoBehaviour
                             {
                                 for (int i = 0; i < destroyableGOs.Length; i++)
                                     destroyCreateEnable.DestoryGameObject(destroyableGOs[i], destroyAfter);
+                            }
+
+                            if(disabledObjects.Length != 0)
+                            {
+                                for (int i = 0; i < disabledObjects.Length; i++)
+                                    disabledObjects[i].SetActive(false);
+                                
                             }
 
                             if (prefabs.Length != 0)
@@ -212,7 +224,7 @@ public class TextBox : MonoBehaviour
                     {
                         count = 0;
                         current = "";
-                        player.isStopped = false;
+                        //player.isStopped = false;
 
                         if (isTrue)
                         {
@@ -246,7 +258,7 @@ public class TextBox : MonoBehaviour
                     {
                         count = 0;
                         current = "";
-                        player.isStopped = false;
+                        //player.isStopped = false;
 
                         if (isTrue)
                         {
@@ -260,6 +272,27 @@ public class TextBox : MonoBehaviour
                     }
                 }
                 break;
+            case 7:
+                // pääalueen ovi
+                {
+                    if (Input.GetKeyUp(KeyCode.Space) && show)
+                    {
+                        current = text[count];
+                        count++;
+
+                        if (count == text.Length)
+                        {
+                            count = 0;
+                            current = "";
+                            //player.isStopped = false;
+
+                            // tähä se input field tjtn....
+
+                            show = false;
+                        }
+                    }
+                    break;
+                }
             default:
                 Debug.Log("there was error with text box, propably case does not exist");
                 break;
@@ -293,7 +326,7 @@ public class TextBox : MonoBehaviour
         if(showExaminedObject && objectTexture != null) // case 2
         {
             Rect objectRect = new Rect(Screen.width / 1.5f, Screen.height / 15f, // muuta tarvittaessa
-                Screen.width / (objectTexture.width / 600), Screen.height / (objectTexture.height / 600));
+                Screen.width / (objectTexture.width / 130), Screen.height / (objectTexture.height / 611));
             GUI.Box(objectRect, objectTexture, "Icon");
         }
 

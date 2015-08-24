@@ -83,7 +83,7 @@ public class PaintingWoman : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
             collided = true;
-            examine.enabled = true;
+            //kommentti oikeest pois  examine.enabled = true;
         }
     }
 

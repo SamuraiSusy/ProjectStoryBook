@@ -5,6 +5,7 @@ public class PlayerControl : MonoBehaviour
 {
     public GameObject exclamationIcon;
     public bool isStopped;
+    private Vector3 lastPos;
     public float speed;
     private bool facingRight;
     private bool once, once2, once3;
@@ -16,6 +17,7 @@ public class PlayerControl : MonoBehaviour
     private void Start()
     {
         isStopped = false;
+        lastPos = gameObject.transform.position;
 
         anim = GetComponent<Animator>();
         calculateSpeed = GetComponent<CalculateSpeed>();
@@ -27,6 +29,27 @@ public class PlayerControl : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+    //    Debug.Log(isStopped + " isstopped");
+
+    //    if (gameObject.transform.position != lastPos)
+    //       isStopped = false;
+    //    else
+    //        isStopped = true;
+
+		
+		lastPos = gameObject.transform.position;
+
+        //if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow) && isStopped && !once2)
+        //{
+        //    isStopped = false;
+        //    once2 = true;
+        //}
+        //if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow) && !isStopped && once2)
+        //{
+        //    isStopped = true;
+        //    once2 = false;
+        //}
+
         if (isStopped)
             speed = 0;
         else
@@ -42,15 +65,6 @@ public class PlayerControl : MonoBehaviour
         {
             Flip();
             once = false;
-        }
-
-        if(Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.RightArrow) || !fadeOut.texture.enabled)
-        {
-            isStopped = false;
-        }
-        if (Input.GetKeyUp(KeyCode.LeftArrow) || Input.GetKeyUp(KeyCode.RightArrow) || fadeOut.texture.enabled)
-        {
-            isStopped = true;
         }
     }
 

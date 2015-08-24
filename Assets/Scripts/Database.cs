@@ -13,7 +13,7 @@ public class Database : MonoBehaviour
         items.Add(new Item("Left scissor half", 2, "Left"));
         items.Add(new Item("Right scissor half", 3, "Right"));
         items.Add(new Item("Scissors", 4, "Together again."));
-        items.Add(new Item("Item5", 5, "item 5"));
+        items.Add(new Item("Chalk", 5, "A small chalk"));
         items.Add(new Item("Item6", 6, "item 6"));
         items.Add(new Item("Item7", 7, "item 7"));
         items.Add(new Item("Item8", 8, "item 8"));
